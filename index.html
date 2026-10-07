@@ -1,662 +1,2360 @@
-<!doctype html>
-<html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Praveenkumar | Video Editor &amp; Motion Designer</title>
 
-    <title>Praveenkumar Resume</title>
+  <!-- Google Fonts: Cinzel, Cormorant Garamond, Montserrat, Syne, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
 
-    <meta
-      name="description"
-      content="Praveenkumar - Portfolio . Check out more."
-    />
-    <meta name="author" content="pixelcave" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Icons -->
-    <link
-      rel="icon"
-      href="https://cdn.pixelcave.com/favicon.svg"
-      sizes="any"
-      type="image/svg+xml"
-    />
-    <link
-      rel="icon"
-      href="https://cdn.pixelcave.com/favicon.png"
-      type="image/png"
-    />
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Inter web font from bunny.net (GDPR compliant) -->
-    <link rel="preconnect" href="https://fonts.bunny.net" />
-    <link
-      href="https://fonts.bunny.net/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-   <!-- Tailwind CSS Play CDN (mostly for development/testing purposes) -->
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <!-- Three.js for 3D Golden Viewport -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-    <!-- Tailwind CSS v4 Configuration -->
-    <style type="text/tailwindcss">
-      /* Class based dark mode */
-      @custom-variant dark (&:where(.dark, .dark *));
-
-      /* Theme configuration */
-      @theme {
-        /* Fonts */
-        --default-font-family: "Inter";
-      }
-    </style>
-
-    <!-- Alpine.js -->
-    <script
-      defer
-      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
-    ></script>
-
-    <!-- Alpine.js (x-cloak - https://alpinejs.dev/directives/cloak) -->
-    <style>
-      [x-cloak] {
-        display: none !important;
-      }
-    </style>
-  </head>
-  <body class="antialiased">
-    <!-- Page Container -->
-    <div
-      x-data="{
-        darkMode: false,
-        toggleDarkMode() {
-          this.darkMode = ! this.darkMode;
-
-          // Toggle dark class on html element
-          if (this.darkMode) {
-            document.body.parentNode.classList.add('dark');
-          } else {
-            document.body.parentNode.classList.remove('dark');
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            cinzel: ['Cinzel', 'serif'],
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['Montserrat', 'sans-serif'],
+            display: ['Syne', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            gold: {
+              50: '#fffbf0',
+              100: '#fef5d6',
+              200: '#fde9aa',
+              300: '#fbd773',
+              400: '#f5c038',
+              500: '#e5a71a',
+              metallic: '#D4AF37',
+              champagne: '#F3E5AB',
+              amber: '#C59B27',
+              bronze: '#8C6721',
+              dark: '#3A2C0D',
+            },
+            obsidian: {
+              950: '#050507',
+              900: '#090a0f',
+              850: '#0e0f17',
+              800: '#141521',
+            }
+          },
+          boxShadow: {
+            'gold-glow': '0 0 35px -5px rgba(212, 175, 55, 0.35)',
+            'gold-glow-lg': '0 0 70px -10px rgba(212, 175, 55, 0.55)',
+            '3d-float': '0 25px 50px -12px rgba(0, 0, 0, 0.75), 0 0 30px rgba(212, 175, 55, 0.2)',
           }
         }
-      }"
-      class="min-h-dvh min-w-80 bg-white text-zinc-800 dark:bg-zinc-950 dark:text-zinc-100"
-    >
-      <!-- Page Content -->
-      <main
-        id="page-content"
-        class="mx-auto flex max-w-6xl flex-auto flex-col px-4 pb-4 lg:px-8 lg:pb-8"
-      >
-        <!-- Main Header -->
-        <header
-          id="page-header"
-          class="flex flex-none items-center justify-between py-7"
-        >
-          <div class="flex items-center gap-2">
-            <!-- Logo -->
-            <a
-              href="javascript:void(0)"
-              class="text-2xl font-thin tracking-widest hover:text-purple-600 active:opacity-75 dark:hover:text-purple-400"
-            >
-              Portfolio
-            </a>
-            <!-- END Logo -->
-
-            <!-- Toggle Dark Mode -->
-            <button
-              x-on:click="toggleDarkMode()"
-              type="button"
-              class="relative inline-flex size-9 items-center justify-center text-zinc-600 hover:opacity-75 dark:text-zinc-400"
-            >
-              <div
-                x-cloak
-                x-show="!darkMode"
-                x-transition:enter="transition ease-out duration-150"
-                x-transition:enter-start="opacity-0 rotate-180"
-                x-transition:enter-end="opacity-100 rotate-0"
-                x-transition:leave="transition ease-in duration-100"
-                x-transition:leave-start="opacity-100 rotate-0"
-                x-transition:leave-end="opacity-0 rotate-180"
-                class="absolute inset-0 flex items-center justify-center"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="hi-outline hi-sun inline-block size-5"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
-                  />
-                </svg>
-              </div>
-              <div
-                x-cloak
-                x-show="darkMode"
-                x-transition:enter="transition ease-out duration-150"
-                x-transition:enter-start="opacity-0 rotate-180"
-                x-transition:enter-end="opacity-100 rotate-0"
-                x-transition:leave="transition ease-in duration-100"
-                x-transition:leave-start="opacity-100 rotate-0"
-                x-transition:leave-end="opacity-0 rotate-180"
-                class="absolute inset-0 flex items-center justify-center"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="hi-outline hi-moon inline-block size-5"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
-                  />
-                </svg>
-              </div>
-            </button>
-            <!-- END Toggle Dark Mode -->
-          </div>
-          <div class="flex items-center gap-4">
-            <!-- Nav -->
-            <nav class="flex items-center gap-6">
-              <button style="background-color: #03AB00;  padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">
-
-<a href="Praveenkumar.pdf" style="color: #ffff; text-decoration: none; "download>Resume</a>
-
-</button>
-            <!--  <a
-                href="#projects"
-                class="text-sm font-medium decoration-purple-600 decoration-2 underline-offset-8 hover:text-black hover:underline dark:decoration-purple-400 dark:hover:text-white"
-              >
-                Projects
-              </a>  -->
-              <a
-                href="#contact"
-                class="text-sm font-medium decoration-purple-600 decoration-2 underline-offset-8 hover:text-black hover:underline dark:decoration-purple-400 dark:hover:text-white"
-              >
-                Hire me
-              </a>
-            </nav>
-            <!-- END Nav -->
-          </div>
-        </header>
-        <!-- END Main Header -->
-
-        <!-- Main Content -->
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-12">
-          <!-- Photo -->
-          <div class="col-span-1 md:col-span-5">
-            <img
-              src="assets/photo.png"
-              alt="Photo"
-              class="rounded-xl object-cover w-full aspect-square"
-            />
-          </div>
-          <!-- END Photo -->
-
-          <!-- Intro -->
-          <div
-            class="relative col-span-1 flex flex-col overflow-hidden rounded-xl bg-zinc-100 p-12 md:col-span-7 dark:bg-zinc-900"
-          >
-            <div
-              aria-hidden="true"
-              class="absolute -top-20 -left-20 size-48 rounded-full bg-yellow-500 blur-2xl"
-            ></div>
-            <div
-              aria-hidden="true"
-              class="absolute -top-10 -right-10 size-64 rounded-full bg-orange-300 blur-3xl"
-            ></div>
-            <div
-              aria-hidden="true"
-              class="absolute inset-0 bg-yellow-100/50 backdrop-blur-md dark:bg-yellow-900/75"
-            ></div>
-            <div class="relative mt-auto">
-              <h1 class="text-4xl font-medium text-black dark:text-white">
-                Hi there, I'm Praveenkumar!
-              </h1>
-              <h2 class="mt-3 leading-relaxed text-zinc-900 dark:text-zinc-200">
-                I'm a passionate Video Editor, Website Developer, and Manager 
-                with 2+ years of experience in video editing and 1+ year of experience in 
-                web development and team management. I specialize in creating engaging videos, 
-                building functional websites, and managing teams to bring ideas to life.
-              </h2>
-            </div>
-             
-          </div>
-          <!-- END Intro -->
-
-          <!-- Projects 
-          <a
-            id="projects"
-            href="javascript:void(0)"
-            class="group relative col-span-1 overflow-hidden rounded-xl bg-zinc-100 p-6 hover:bg-zinc-200/75 active:bg-zinc-200 md:col-span-4 dark:bg-zinc-900 dark:hover:bg-zinc-800/75 dark:active:bg-zinc-800"
-          >
-            <div
-              class="absolute top-6 right-6 scale-0 opacity-0 transition duration-75 ease-out group-hover:scale-100 group-hover:opacity-100"
-              aria-hidden="true"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="hi-solid hi-arrow-small-right inline-block size-6"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M3.75 12a.75.75 0 0 1 .75-.75h13.19l-5.47-5.47a.75.75 0 0 1 1.06-1.06l6.75 6.75a.75.75 0 0 1 0 1.06l-6.75 6.75a.75.75 0 1 1-1.06-1.06l5.47-5.47H4.5a.75.75 0 0 1-.75-.75Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </div>
-            <h3 class="text-lg font-medium text-zinc-950 dark:text-zinc-50">
-              Abstract set
-            </h3>
-            <h4 class="text-sm text-zinc-600 dark:text-zinc-400">This month</h4>
-            <div
-              class="mt-10 transition duration-150 ease-out group-hover:scale-105"
-            >
-              <img
-                src="assets/project1.png"
-                alt="Project 1"
-                class="rounded-xl object-contain w-full aspect-square"
-              />
-            </div>
-          </a>
-          <a
-            href="javascript:void(0)"
-            class="group relative col-span-1 overflow-hidden rounded-xl bg-zinc-100 p-6 hover:bg-zinc-200/75 active:bg-zinc-200 md:col-span-4 dark:bg-zinc-900 dark:hover:bg-zinc-800/75 dark:active:bg-zinc-800"
-          >
-            <div
-              class="absolute top-6 right-6 scale-0 opacity-0 transition duration-75 ease-out group-hover:scale-100 group-hover:opacity-100"
-              aria-hidden="true"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="hi-solid hi-arrow-small-right inline-block size-6"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M3.75 12a.75.75 0 0 1 .75-.75h13.19l-5.47-5.47a.75.75 0 0 1 1.06-1.06l6.75 6.75a.75.75 0 0 1 0 1.06l-6.75 6.75a.75.75 0 1 1-1.06-1.06l5.47-5.47H4.5a.75.75 0 0 1-.75-.75Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </div>
-            <h3 class="text-lg font-medium text-zinc-950 dark:text-zinc-50">
-              Illustration
-            </h3>
-            <h4 class="text-sm text-zinc-600 dark:text-zinc-400">This month</h4>
-            <div
-              class="mt-10 transition duration-150 ease-out group-hover:scale-105"
-            >
-              <img
-                src="assets/project2.png"
-                alt="Project 2"
-                class="rounded-xl object-contain w-full aspect-square"
-              />
-            </div>
-          </a>
-          <a
-            href="javascript:void(0)"
-            class="group relative col-span-1 overflow-hidden rounded-xl bg-zinc-100 p-6 hover:bg-zinc-200/75 active:bg-zinc-200 md:col-span-4 dark:bg-zinc-900 dark:hover:bg-zinc-800/75 dark:active:bg-zinc-800"
-          >
-            <div
-              class="absolute top-6 right-6 scale-0 opacity-0 transition duration-75 ease-out group-hover:scale-100 group-hover:opacity-100"
-              aria-hidden="true"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="hi-solid hi-arrow-small-right inline-block size-6"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M3.75 12a.75.75 0 0 1 .75-.75h13.19l-5.47-5.47a.75.75 0 0 1 1.06-1.06l6.75 6.75a.75.75 0 0 1 0 1.06l-6.75 6.75a.75.75 0 1 1-1.06-1.06l5.47-5.47H4.5a.75.75 0 0 1-.75-.75Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </div>
-            <h3 class="text-lg font-medium text-zinc-950 dark:text-zinc-50">
-              Graphic pack
-            </h3>
-            <h4 class="text-sm text-zinc-600 dark:text-zinc-400">This month</h4>
-            <div
-              class="mt-10 transition duration-150 ease-out group-hover:scale-105"
-            >
-              <img
-                src="assets/project3.png"
-                alt="Project 3"
-                class="rounded-xl object-contain w-full aspect-square"
-              />
-            </div>
-          </a>
-          <a
-            href="javascript:void(0)"
-            class="group relative col-span-1 overflow-hidden rounded-xl bg-zinc-100 p-6 hover:bg-zinc-200/75 active:bg-zinc-200 md:col-span-4 dark:bg-zinc-900 dark:hover:bg-zinc-800/75 dark:active:bg-zinc-800"
-          >
-            <div
-              class="absolute top-6 right-6 scale-0 opacity-0 transition duration-75 ease-out group-hover:scale-100 group-hover:opacity-100"
-              aria-hidden="true"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="hi-solid hi-arrow-small-right inline-block size-6"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M3.75 12a.75.75 0 0 1 .75-.75h13.19l-5.47-5.47a.75.75 0 0 1 1.06-1.06l6.75 6.75a.75.75 0 0 1 0 1.06l-6.75 6.75a.75.75 0 1 1-1.06-1.06l5.47-5.47H4.5a.75.75 0 0 1-.75-.75Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </div>
-            <h3 class="text-lg font-medium text-zinc-950 dark:text-zinc-50">
-              Brand identity
-            </h3>
-            <h4 class="text-sm text-zinc-600 dark:text-zinc-400">Last month</h4>
-            <div
-              class="mt-10 transition duration-150 ease-out group-hover:scale-105"
-            >
-              <img
-                src="assets/project4.png"
-                alt="Project 4"
-                class="rounded-xl object-contain w-full aspect-square"
-              />
-            </div>
-          </a>
-          <a
-            href="javascript:void(0)"
-            class="group relative col-span-1 overflow-hidden rounded-xl bg-zinc-100 p-6 hover:bg-zinc-200/75 active:bg-zinc-200 md:col-span-4 dark:bg-zinc-900 dark:hover:bg-zinc-800/75 dark:active:bg-zinc-800"
-          >
-            <div
-              class="absolute top-6 right-6 scale-0 opacity-0 transition duration-75 ease-out group-hover:scale-100 group-hover:opacity-100"
-              aria-hidden="true"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="hi-solid hi-arrow-small-right inline-block size-6"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M3.75 12a.75.75 0 0 1 .75-.75h13.19l-5.47-5.47a.75.75 0 0 1 1.06-1.06l6.75 6.75a.75.75 0 0 1 0 1.06l-6.75 6.75a.75.75 0 1 1-1.06-1.06l5.47-5.47H4.5a.75.75 0 0 1-.75-.75Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </div>
-            <h3 class="text-lg font-medium text-zinc-950 dark:text-zinc-50">
-              Illustration Builder
-            </h3>
-            <h4 class="text-sm text-zinc-600 dark:text-zinc-400">Last month</h4>
-            <div
-              class="mt-10 transition duration-150 ease-out group-hover:scale-105"
-            >
-              <img
-                src="assets/project5.png"
-                alt="Project 5"
-                class="rounded-xl object-contain w-full aspect-square"
-              />
-            </div>
-          </a>
-          <a
-            href="javascript:void(0)"
-            class="group relative col-span-1 overflow-hidden rounded-xl bg-zinc-100 p-6 hover:bg-zinc-200/75 active:bg-zinc-200 md:col-span-4 dark:bg-zinc-900 dark:hover:bg-zinc-800/75 dark:active:bg-zinc-800"
-          >
-            <div
-              class="absolute top-6 right-6 scale-0 opacity-0 transition duration-75 ease-out group-hover:scale-100 group-hover:opacity-100"
-              aria-hidden="true"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="hi-solid hi-arrow-small-right inline-block size-6"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M3.75 12a.75.75 0 0 1 .75-.75h13.19l-5.47-5.47a.75.75 0 0 1 1.06-1.06l6.75 6.75a.75.75 0 0 1 0 1.06l-6.75 6.75a.75.75 0 1 1-1.06-1.06l5.47-5.47H4.5a.75.75 0 0 1-.75-.75Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </div>
-            <h3 class="text-lg font-medium text-zinc-950 dark:text-zinc-50">
-              Logo design
-            </h3>
-            <h4 class="text-sm text-zinc-600 dark:text-zinc-400">Last month</h4>
-            <div
-              class="mt-10 transition duration-150 ease-out group-hover:scale-105"
-            >
-              <img
-                src="assets/project6.png"
-                alt="Project 6"
-                class="rounded-xl object-contain w-full aspect-square"
-              />
-            </div>
-          </a>
-           
-          END Projects -->
-
-          <!-- Contact -->
-          <div
-            id="contact"
-            class="relative col-span-1 flex flex-col overflow-hidden rounded-xl bg-zinc-100 px-12 py-20 md:col-span-12 dark:bg-zinc-900"
-          >
-            <div
-              aria-hidden="true"
-              class="absolute -top-20 -left-20 size-48 rounded-full bg-pink-300 blur-2xl"
-            ></div>
-            <div
-              aria-hidden="true"
-              class="absolute -right-48 -bottom-48 size-96 rounded-full bg-indigo-200 blur-2xl dark:bg-indigo-400/50"
-            ></div>
-            <div
-              aria-hidden="true"
-              class="absolute -top-48 -right-48 size-96 rounded-full bg-purple-200 blur-3xl dark:bg-purple-400/50"
-            ></div>
-            <div
-              aria-hidden="true"
-              class="absolute inset-0 bg-purple-100/50 backdrop-blur-md dark:bg-purple-900/75"
-            ></div>
-            <div class="relative mx-auto mt-auto max-w-md">
-              <h2 class="text-4xl font-medium text-black dark:text-white">
-                Get in touch
-              </h2>
-              <h3 class="mt-3 leading-relaxed text-zinc-900 dark:text-zinc-200">
-                Looking for a creative partner for your next project? I'm available for freelance work and would love to hear about your ideas. Whether you need professional video editing, website development, or creative solutions for your business, let's collaborate and bring your vision to life.
-              </h3>
-            <form
-  id="contactForm"
-  action="https://formspree.io/f/mkgzjorg"
-  method="POST"
-  class="mt-10 w-full space-y-6"
->
-  <!-- Name -->
-  <div class="space-y-2">
-    <label for="name" class="inline-block text-sm font-medium">
-      Name
-    </label>
-
-    <input
-      type="text"
-      id="name"
-      name="name"
-      placeholder="Your Name"
-      class="block w-full rounded-lg bg-white border border-white px-5 py-3 leading-6 placeholder-zinc-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 dark:border-purple-950 dark:bg-purple-950 dark:placeholder-zinc-400"
-      required
-    />
-  </div>
-
-  <!-- Email -->
-  <div class="space-y-2">
-    <label for="email" class="inline-block text-sm font-medium">
-      Email
-    </label>
-
-    <input
-      type="email"
-      id="email"
-      name="email"
-      placeholder="your@email.com"
-      class="block w-full rounded-lg bg-white border border-white px-5 py-3 leading-6 placeholder-zinc-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 dark:border-purple-950 dark:bg-purple-950 dark:placeholder-zinc-400"
-      required
-    />
-  </div>
-
-  <!-- Message -->
-  <div class="space-y-2">
-    <label for="message" class="inline-block text-sm font-medium">
-      Message
-    </label>
-
-    <textarea
-      id="message"
-      name="message"
-      rows="6"
-      placeholder="Tell me about your project..."
-      class="block w-full rounded-lg bg-white border border-white px-5 py-3 leading-6 placeholder-zinc-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 dark:border-purple-950 dark:bg-purple-950 dark:placeholder-zinc-400"
-      required
-    ></textarea>
-  </div>
-
-  <!-- Email Subject -->
-  <input
-    type="hidden"
-    name="_subject"
-    value="New Portfolio Contact Message"
-  />
-
-  <!-- Submit + Status -->
-  <div>
-    <button
-      id="submitButton"
-      type="submit"
-      class="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-purple-700 bg-purple-700 px-5 py-3 text-sm leading-6 font-semibold text-white hover:border-purple-600 hover:bg-purple-600 focus:ring-2 focus:ring-purple-400/50 active:border-purple-700 active:bg-purple-700 lg:w-auto"
-    >
-      <span id="buttonText">Send Message</span>
-    </button>
-
-    <!-- Status Message -->
-    <p
-      id="formStatus"
-      class="mt-3 text-sm"
-      style="display: none;"
-    ></p>
-  </div>
-</form>
-
-<script>
-  const form = document.getElementById("contactForm");
-  const button = document.getElementById("submitButton");
-  const buttonText = document.getElementById("buttonText");
-  const status = document.getElementById("formStatus");
-
-  form.addEventListener("submit", async function (event) {
-    event.preventDefault();
-
-    // Sending state
-    button.disabled = true;
-    buttonText.textContent = "Sending...";
-    status.style.display = "none";
-
-    const formData = new FormData(form);
-
-    try {
-      const response = await fetch(form.action, {
-        method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json"
-        }
-      });
-
-      if (response.ok) {
-        // Success
-        status.textContent = "✓ Message sent successfully!";
-        status.style.color = "green";
-        status.style.display = "block";
-
-        form.reset();
-      } else {
-        // Failed
-        status.textContent = "✕ Message not sent. Please try again.";
-        status.style.color = "red";
-        status.style.display = "block";
       }
-    } catch (error) {
-      // Network error
-      status.textContent = "✕ Something went wrong. Please try again.";
-      status.style.color = "red";
-      status.style.display = "block";
+    }
+  </script>
+
+  <style>
+    /* Prevent horizontal overflow during animations */
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
     }
 
-    // Reset button
-    button.disabled = false;
-    buttonText.textContent = "Send Message";
-  });
-</script>
+    /* 3D Perspective Context */
+    .perspective-container {
+      perspective: 1200px;
+      perspective-origin: center center;
+    }
+
+    .preserve-3d {
+      transform-style: preserve-3d;
+    }
+
+    .translate-z-12 {
+      transform: translateZ(48px);
+    }
+    
+    .translate-z-20 {
+      transform: translateZ(80px);
+    }
+
+    .translate-z-6 {
+      transform: translateZ(24px);
+    }
+
+    /* Metallic Gold Gradients */
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FFF5D0 0%, #D4AF37 38%, #AA771C 70%, #FDE792 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gold-gradient-bg {
+      background: linear-gradient(135deg, #F5E1A4 0%, #D4AF37 50%, #9E741F 100%);
+    }
+
+    .gold-gradient-border {
+      position: relative;
+    }
+    .gold-gradient-border::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.8), rgba(243, 229, 171, 0.2), rgba(140, 103, 33, 0.8));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* 3D Floating Glass Panes */
+    .glass-panel-3d {
+      background: rgba(14, 15, 23, 0.75);
+      border: 1px solid rgba(212, 175, 55, 0.22);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+    }
+
+    .light .glass-panel-3d {
+      background: rgba(253, 251, 247, 0.88);
+      border: 1px solid rgba(197, 155, 39, 0.3);
+      box-shadow: 0 20px 40px -15px rgba(140, 103, 33, 0.12);
+    }
+
+    /* 3D Tilt Card */
+    .tilt-card {
+      transform-style: preserve-3d;
+      transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+
+    /* 3D Gold Orbiting Ring Animation */
+    @keyframes spinOrbit {
+      from { transform: rotate3d(1, 1, 1, 0deg); }
+      to { transform: rotate3d(1, 1, 1, 360deg); }
+    }
+
+    .animate-orbit {
+      animation: spinOrbit 18s linear infinite;
+    }
+
+    /* Hide standard scrollbars for Instagram Reels */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* =========================================================================
+       CINEMATIC PRELOADER STYLES (GOLDEN APERTURE & FILM REEL)
+       ========================================================================= */
+    #cinePreloader {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(circle at center, #14120a 0%, #090a0f 65%, #030304 100%);
+      z-index: 999999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      perspective: 1000px;
+      overflow: hidden;
+      transition: opacity 0.65s cubic-bezier(0.77, 0, 0.175, 1), 
+                  transform 0.65s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    #cinePreloader.preloader-hidden {
+      opacity: 0;
+      transform: scale(1.08);
+      pointer-events: none;
+    }
+
+    /* 3D Rotating Film Reels */
+    .preloader-shutter-wrap {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-style: preserve-3d;
+    }
+
+    .shutter-ring-outer {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: #D4AF37;
+      border-bottom-color: #F3E5AB;
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
+      animation: shutterSpinClockwise 2.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+    }
+
+    .shutter-ring-inner {
+      position: absolute;
+      inset: 14px;
+      border-radius: 50%;
+      border: 2px dashed rgba(212, 175, 55, 0.5);
+      animation: shutterSpinCounter 3.5s linear infinite;
+    }
+
+    .shutter-iris-center {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #2a2007 0%, #090a0f 85%);
+      border: 1px solid rgba(212, 175, 55, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.9), 0 0 15px rgba(212, 175, 55, 0.4);
+    }
+
+    @keyframes shutterSpinClockwise {
+      0% { transform: rotateZ(0deg) rotateX(15deg); }
+      100% { transform: rotateZ(360deg) rotateX(15deg); }
+    }
+
+    @keyframes shutterSpinCounter {
+      0% { transform: rotateZ(360deg); }
+      100% { transform: rotateZ(0deg); }
+    }
+
+    /* Optical Flare Flash on Finish */
+    .preloader-optical-flare {
+      position: absolute;
+      width: 140vw;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), #FFF5D0, #D4AF37, transparent);
+      filter: blur(2px) drop-shadow(0 0 25px #FFF5D0);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .preloader-optical-flare.flare-flash {
+      opacity: 1;
+      transform: scaleY(3.5);
+    }
+
+    /* Print styling for CV download/print */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #cvModalContent, #cvModalContent * {
+        visibility: visible;
+      }
+      #cvModalContent {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        color: #000;
+        background: #fff;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-obsidian-950 text-slate-100 dark:bg-obsidian-950 dark:text-slate-100 transition-colors duration-500 font-sans antialiased overflow-x-hidden relative selection:bg-gold-500/30 selection:text-gold-200">
+
+  <!-- ================= CINEMATIC LUXURY PRELOADER ================= -->
+  <div id="cinePreloader" aria-label="Loading Cinematic Suite">
+    <div class="preloader-optical-flare" id="preloaderFlare"></div>
+
+    <div class="flex flex-col items-center gap-6 z-10">
+      <!-- 3D Gold Shutter / Dual Film Reel -->
+      <div class="preloader-shutter-wrap">
+        <div class="shutter-ring-outer"></div>
+        <div class="shutter-ring-inner"></div>
+        <div class="shutter-iris-center">
+          <svg class="w-5 h-5 text-gold-champagne animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Timecode Slate Badge -->
+      <div class="bg-obsidian-900/90 border border-gold-metallic/40 rounded-2xl px-5 py-3 shadow-gold-glow text-center min-w-[220px]">
+        <div class="flex items-center justify-between text-[9px] font-mono text-gold-metallic/80 uppercase tracking-widest pb-1 border-b border-gold-metallic/20">
+          <span>PRAVEENKUMAR</span>
+          <span>4K TIMELINE</span>
+        </div>
+        <div class="text-sm font-mono font-bold text-gold-champagne tracking-widest pt-1.5" id="preloaderTC">
+          00:00:00:18
+        </div>
+      </div>
+
+      <!-- Progress Meter -->
+      <div class="w-52 space-y-2 text-center">
+        <div class="h-1.5 w-full bg-obsidian-900 rounded-full border border-gold-metallic/30 overflow-hidden p-0.5">
+          <div id="preloaderBar" class="h-full bg-gradient-to-r from-gold-bronze via-gold-metallic to-gold-champagne rounded-full w-0 transition-all duration-150 shadow-gold-glow"></div>
+        </div>
+        <div class="flex justify-between items-center text-[10px] font-mono text-gold-metallic/90">
+          <span id="preloaderStatusText" class="tracking-widest uppercase">RENDERING SUITE</span>
+          <span id="preloaderPct" class="font-bold text-gold-champagne">0%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+    <canvas id="threeCanvas" class="w-full h-full block"></canvas>
+    <!-- Gilded Radial Fog overlay -->
+    <div class="absolute inset-0 bg-radial-gradient from-transparent via-obsidian-950/60 to-obsidian-950 pointer-events-none"></div>
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-gold-500/10 rounded-full blur-[180px] pointer-events-none"></div>
+  </div>
+
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-xl border-b border-gold-metallic/20 bg-obsidian-950/80 dark:bg-obsidian-950/80 light:bg-gold-50/90" id="mainNavbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- 3D Brand Logo -->
+        <a href="#hero" class="flex items-center gap-3.5 group perspective-container">
+          <div class="w-11 h-11 rounded-2xl gold-gradient-border bg-gradient-to-tr from-obsidian-900 to-obsidian-800 p-0.5 shadow-gold-glow group-hover:rotate-12 group-hover:scale-105 transition-all duration-300 flex items-center justify-center">
+            <span class="font-cinzel font-black text-sm tracking-widest text-gold-champagne group-hover:scale-110 transition-transform">PK</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span class="font-cinzel font-bold text-sm sm:text-base tracking-[0.25em] text-white dark:text-white light:text-slate-900 group-hover:text-gold-champagne transition-colors">PRAVEENKUMAR</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-gold-metallic animate-ping"></span>
+            </div>
+            <span class="block text-[9px] font-mono tracking-[0.25em] uppercase text-gold-metallic/80">Video Editor &amp; Motion Direction</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Items -->
+        <nav class="hidden lg:flex items-center gap-7 text-xs font-semibold tracking-[0.16em] uppercase text-slate-300">
+          <a href="#hero" class="hover:text-gold-champagne transition-colors">My Profile</a>
+          <a href="#showreel" class="hover:text-gold-champagne transition-colors">Showreel</a>
+          <a href="#reels-showcase" class="hover:text-gold-champagne transition-colors flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-gold-metallic"></span>
+            Auto Reels 
+          </a>
+          <a href="#featured-works" class="hover:text-gold-champagne transition-colors">Works</a>
+          <a href="#about-philosophy" class="hover:text-gold-champagne transition-colors">Experience</a>
+        </nav>
+
+        <!-- Right Quick Action Trio: Hire Me + Download CV + Theme Toggle -->
+        <div class="flex items-center gap-3">
+          <!-- Download CV Quick Button -->
+          <button onclick="openCvModal()" class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-gold-metallic/50 text-gold-champagne bg-gold-500/10 hover:bg-gold-500/20 text-xs font-mono tracking-wider transition-all duration-300 hover:scale-105">
+            <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+            <span>CV</span>
+          </button>
+
+          <!-- Hire Me Primary Button -->
+          <a href="#contact-booking" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full gold-gradient-bg text-obsidian-950 font-cinzel font-bold text-xs uppercase tracking-[0.14em] shadow-gold-glow hover:shadow-gold-glow-lg transition-all duration-300 hover:scale-105">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            <span>Hire Me</span>
+          </a>
+
+         
+
+          <!-- Mobile Menu Hamburger -->
+          <button id="mobileMenuBtn" aria-label="Toggle Navigation" class="lg:hidden p-2 text-gold-300 hover:text-white">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Menu -->
+      <div id="mobileMenu" class="hidden lg:hidden pb-6 pt-2 border-t border-gold-metallic/20 flex flex-col gap-3 text-xs font-semibold uppercase tracking-widest">
+        <a href="#hero" class="mobile-nav-link text-slate-300 hover:text-gold-champagne py-1.5">Profile &amp; 3D Showcase</a>
+        <a href="#showreel" class="mobile-nav-link text-slate-300 hover:text-gold-champagne py-1.5">Master Showreel</a>
+        <a href="#reels-showcase" class="mobile-nav-link text-slate-300 hover:text-gold-champagne py-1.5">Instagram Auto-Reels</a>
+        <a href="#featured-works" class="mobile-nav-link text-slate-300 hover:text-gold-champagne py-1.5">Selected Works</a>
+        <a href="#about-philosophy" class="mobile-nav-link text-slate-300 hover:text-gold-champagne py-1.5">Philosophy &amp; Leadership</a>
+        <div class="flex items-center gap-3 pt-3">
+          <button onclick="openCvModal()" class="flex-1 py-2.5 rounded-xl border border-gold-metallic/50 text-gold-champagne text-xs font-mono text-center">
+            Download CV
+          </button>
+          <a href="#contact-booking" class="flex-1 py-2.5 rounded-xl gold-gradient-bg text-obsidian-950 text-xs font-cinzel font-bold text-center">
+            Hire Me
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10 pt-28 sm:pt-36">
+    <section id="hero" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 pt-6 sm:pt-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left Hero Narrative & CTA actions -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-gold-metallic/40 bg-gold-500/10 text-gold-champagne text-xs font-mono tracking-[0.2em] uppercase">
+            <span class="w-2 h-2 rounded-full bg-gold-metallic animate-pulse"></span>
+            Available For Editings &bull; 2026 Season
+          </div>
+
+          <h1 class="text-4xl sm:text-6xl xl:text-7xl font-cinzel font-bold tracking-tight leading-[1.12]">
+            Sculpting Visual Stories in <span class="gold-gradient-text">3D &amp; Motion</span>.
+          </h1>
+
+          <!-- User Experience Copy Blended Faithfully -->
+          <p class="text-sm sm:text-base text-slate-300 dark:text-slate-300 light:text-slate-700 leading-relaxed font-sans max-w-2xl font-light">
+            Creative and detail-oriented <strong class="font-semibold text-gold-champagne">Video Editor &amp; Motion Designer</strong> with 2+ years of freelance experience creating engaging content for YouTube, social media, commercial brands, weddings, and SaaS businesses. Skilled in Adobe Premiere Pro, After Effects, and Photoshop, with experience in video editing, motion graphics, subtitles, color correction, sound design, thumbnails, and social-media content.
+          </p>
+
+          <!-- Core Action Buttons: Hire Me + Download CV + Showreel -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+            <!-- Hire Me CTA -->
+            <a href="#contact-booking" class="px-8 py-4 rounded-full gold-gradient-bg text-obsidian-950 font-cinzel font-bold text-xs uppercase tracking-[0.18em] shadow-gold-glow hover:shadow-gold-glow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2">
+              <i data-lucide="sparkles" class="w-4 h-4 fill-obsidian-950"></i>
+              <span>Hire Me Now</span>
+            </a>
+
+            <!-- Download CV Button -->
+            <button onclick="openCvModal()" class="px-7 py-4 rounded-full glass-panel-3d border border-gold-metallic/60 text-gold-champagne hover:border-gold-metallic hover:bg-gold-500/20 font-mono text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-2 hover:scale-105 shadow-gold-glow">
+              <i data-lucide="download" class="w-4 h-4 text-gold-metallic"></i>
+              <span>Download CV</span>
+            </button>
+
+            <!-- Showreel link -->
+            <a href="#showreel" class="px-6 py-4 rounded-full text-slate-300 hover:text-white font-mono text-xs uppercase tracking-wider flex items-center gap-2 transition-colors">
+              <i data-lucide="play-circle" class="w-4 h-4 text-gold-champagne"></i>
+              <span>Watch Reel</span>
+            </a>
+          </div>
+
+          <!-- Quick Metrics Bar -->
+          <div class="pt-8 border-t border-gold-metallic/20 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0">
+            <div>
+              <p class="font-cinzel text-2xl sm:text-3xl font-bold gold-gradient-text">2+ Yrs</p>
+              <p class="text-[11px] font-mono text-slate-400 mt-0.5">Freelance Craft</p>
+            </div>
+            <div>
+              <p class="font-cinzel text-2xl sm:text-3xl font-bold gold-gradient-text">150+</p>
+              <p class="text-[11px] font-mono text-slate-400 mt-0.5">Videos Polished</p>
+            </div>
+            <div>
+              <p class="font-cinzel text-2xl sm:text-3xl font-bold gold-gradient-text">100%</p>
+              <p class="text-[11px] font-mono text-slate-400 mt-0.5">Delivery Record</p>
             </div>
           </div>
-          <!-- END Contact -->
 
-          <!-- Footer -->
-          <footer
-            class="flex flex-col gap-6 py-7 text-center text-sm md:col-span-12 md:flex-row-reverse md:justify-between md:gap-0 md:text-left"
-          >
-            <nav class="flex items-center justify-center gap-4">
-            
-              
-              <a
-                href="https://www.instagram.com/itspraveen2.0/"
-                class="text-zinc-400 hover:text-[#333] dark:hover:text-zinc-50"
-                target="_blank"
-              >
-                <svg
-                  class="icon-instagram inline-block size-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"
-                  ></path>
-                </svg>
-              </a>
-              <a
-                href="https://github.com/itspraveendh/"
-                class="text-zinc-400 hover:text-[#333] dark:hover:text-zinc-50"
-                target="_blank"
-              >
-                <svg
-                  class="icon-github inline-block size-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"
-                  ></path>
-                </svg>
-              </a>
-             
-            </nav>
-            <div class="text-zinc-500 dark:text-zinc-400/80">
-              <span class="font-medium">itspraveen2.0</span> ©
-              <span x-text="new Date().getFullYear()"></span>
-              <p>All right reserved by <a href="https://itspraveendh.github.io/cv/" target="_blank" class="font-bold">itspraveen2.0</a> • Distributed by <a href="#" target="_blank" class="font-bold">Itspraveen2.0</a></p>
-            </div>
-          </footer>
-          <!-- END Footer -->
         </div>
-        <!-- END Main Content -->
-      </main>
-      <!-- END Page Content -->
+
+        <!-- Right: 3D Holographic "My Image" Card with Live Upload / Image Swap and 3D Tilt -->
+        <div class="lg:col-span-5 flex justify-center perspective-container">
+          <div 
+            id="hero3dCard" 
+            class="tilt-card relative w-[320px] sm:w-[380px] rounded-3xl p-4 glass-panel-3d shadow-3d-float border border-gold-metallic/50 cursor-pointer group select-none"
+            title="Interactive 3D Tilt Card • Hover & Move Mouse">
+
+            <!-- 3D Orbiting Golden Rings -->
+            <div class="absolute -inset-4 rounded-full border border-gold-metallic/30 pointer-events-none animate-orbit translate-z-12 opacity-60"></div>
+            <div class="absolute -inset-10 rounded-full border border-gold-champagne/15 pointer-events-none animate-orbit translate-z-20 opacity-40" style="animation-direction: reverse; animation-duration: 25s;"></div>
+
+            <!-- Avatar Picture Frame -->
+            <div class="relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-obsidian-900 border border-gold-metallic/40 shadow-inner">
+              <img 
+                id="myProfileImage" 
+                src="Profile.png" 
+                alt="Praveenkumar Portrait" 
+                class="w-full h-full object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700">
+
+              <!-- Gilded Rim Light Shimmer -->
+              <div class="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-transparent to-transparent opacity-80"></div>
+              <div class="absolute inset-0 bg-radial-gradient from-transparent to-black/60 pointer-events-none"></div>
+
+              <!-- Top Float Badge: "My Image / 3D Avatar" -->
+              <div class="absolute top-3 left-3 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-gold-metallic/40 text-[10px] font-mono text-gold-champagne translate-z-20">
+                <i data-lucide="shield-check" class="w-3 h-3 text-gold-metallic"></i>
+                <span>Verified Creator</span>
+              </div>
+
+             
+              <!-- Bottom 3D Floating Name Card -->
+              <div class="absolute bottom-3 inset-x-3 p-4 rounded-xl bg-obsidian-950/85 backdrop-blur-lg border border-gold-metallic/30 translate-z-20">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <h3 class="font-cinzel font-bold text-sm sm:text-base text-gold-champagne">Praveenkumar</h3>
+                    <p class="text-[10px] font-mono text-slate-300">Lead Editor &bull; Motion Designer</p>
+                  </div>
+                  <div class="text-right">
+                    <span class="inline-block px-2 py-0.5 rounded bg-gold-metallic/20 text-gold-300 font-mono text-[9px] uppercase">
+                      2+ Yrs Exp
+                    </span>
+                  </div>
+                </div>
+
+                <div class="mt-2.5 pt-2 border-t border-gold-metallic/15 flex items-center justify-between text-[10px] font-mono text-gold-metallic/90">
+                  <span>Move mouse for 3D tilt</span>
+                  <span class="flex items-center gap-1 text-gold-champagne hover:underline" onclick="event.stopPropagation(); openCvModal();">
+                    View CV &rarr;
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SHOWREEL SECTION -->
+    <section id="showreel" class="py-20 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-b border-gold-metallic/20 pb-6">
+          <div>
+            <span class="text-xs font-mono tracking-[0.3em] uppercase text-gold-metallic font-semibold">Master Cut Reel</span>
+            <h2 class="text-3xl sm:text-4xl font-cinzel font-bold text-slate-100 mt-1">
+              Curated 4K Showreel Showcase
+            </h2>
+          </div>
+          
+          <!-- Audio HUD status button -->
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-mono text-slate-400">Default: Muted for browser safety</span>
+            <button id="showreelHudUnmuteBtn" class="px-4 py-2 rounded-full border border-gold-metallic/50 text-gold-champagne bg-gold-950/40 hover:bg-gold-500/20 text-xs font-mono flex items-center gap-2 transition-all">
+              <i data-lucide="volume-x" id="hudMuteIcon" class="w-4 h-4"></i>
+              <span id="hudMuteText">Tap to Unmute</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3D Floating Master Frame -->
+        <div class="perspective-container">
+          <div class="relative rounded-3xl overflow-hidden glass-panel-3d border border-gold-metallic/50 shadow-3d-float bg-black group" id="masterReel3dContainer">
+            
+            <div class="relative aspect-video w-full bg-black cursor-pointer" id="masterVideoWrapper">
+              <!-- Video Tag strictly muted by default -->
+              <video
+                id="masterVideoElement"
+                class="w-full h-full object-cover"
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                poster="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=1600&q=80">
+                <source src="showreel.mp4" type="video/mp4">
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+              </video>
+
+              <!-- Floating Gilded Ribbon "Click to Unmute" banner -->
+              <div id="masterUnmuteRibbon" class="absolute top-6 left-6 z-20 transition-all duration-300">
+                <button id="ribbonUnmuteAction" class="px-4 py-2.5 rounded-full bg-black/80 backdrop-blur-md border border-gold-metallic/60 text-gold-champagne text-xs font-mono tracking-wider flex items-center gap-2 shadow-gold-glow hover:scale-105 transition-transform">
+                  <i data-lucide="volume-x" class="w-4 h-4 text-gold-metallic animate-bounce"></i>
+                  <span>Sound Muted &bull; <strong>Click to Listen with Audio</strong> 🔊</span>
+                </button>
+              </div>
+
+              <!-- Center Flash Feedback Icon -->
+              <div id="masterCenterFlash" class="absolute inset-0 m-auto w-20 h-20 rounded-full bg-gold-metallic/90 text-obsidian-950 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 z-20">
+                <i data-lucide="play" id="masterFlashIcon" class="w-8 h-8 fill-obsidian-950 pl-1"></i>
+              </div>
+
+              <!-- Cinematic HUD Bottom Controls -->
+              <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/80 to-transparent pt-12 pb-5 px-6 z-20 flex flex-col gap-3">
+                
+                <!-- Seek Bar -->
+                <div class="relative w-full h-1.5 bg-white/20 hover:h-2 rounded-full cursor-pointer transition-all" id="masterSeekTrack">
+                  <div id="masterSeekFill" class="h-full bg-gradient-to-r from-gold-amber via-gold-metallic to-gold-champagne rounded-full w-0 relative">
+                    <span class="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow-gold-glow opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  </div>
+                </div>
+
+                <!-- Control elements -->
+                <div class="flex items-center justify-between text-xs font-mono text-slate-200">
+                  <div class="flex items-center gap-4">
+                    <button id="masterPlayBtn" aria-label="Play or Pause" class="text-gold-champagne hover:text-white transition-colors">
+                      <i data-lucide="pause" id="masterPlayIcon" class="w-5 h-5"></i>
+                    </button>
+                    <button id="masterMuteBtn" aria-label="Mute or Unmute" class="flex items-center gap-1.5 px-3 py-1 rounded bg-gold-950/40 border border-gold-metallic/40 text-gold-champagne">
+                      <i data-lucide="volume-x" id="masterBottomMuteIcon" class="w-4 h-4"></i>
+                      <span id="masterBottomMuteLabel">Unmute</span>
+                    </button>
+                    <span id="masterTimeDisplay" class="text-slate-400">00:00 / 00:00</span>
+                  </div>
+
+                  <div class="flex items-center gap-4">
+                    <span class="hidden sm:inline text-gold-metallic/80 uppercase tracking-widest text-[11px]">Couture Reel &bull; 4K Masters</span>
+                    <button id="masterFullscreenBtn" aria-label="Fullscreen" class="text-gold-champagne hover:text-white">
+                      <i data-lucide="maximize" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INSTAGRAM-STYLE 3D REELS CAROUSEL -->
+    <section id="reels-showcase" class="py-20 relative bg-obsidian-900/60 border-y border-gold-metallic/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header with auto-slide status -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-mono tracking-[0.3em] uppercase text-gold-metallic font-semibold">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+              Instagram-Style 9:16 Video Slideshow
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-cinzel font-bold text-slate-100 mt-1">
+              3D Auto-Sliding Reels Carousel
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-400 max-w-xl mt-1 font-light">
+              High-retention 9:16 cuts with animated subtitles, kinetic UI, and sound sync. Slides automatically every 4 seconds. <strong>Every video is muted by default</strong>—tap any card to turn audio on.
+            </p>
+          </div>
+
+          <!-- Carousel Controls: Prev, Next, Auto-slide Toggle -->
+          <div class="flex items-center gap-3">
+            <button id="toggleCarouselAutoBtn" class="px-3.5 py-2 rounded-xl glass-panel-3d text-gold-champagne hover:border-gold-metallic text-xs font-mono flex items-center gap-2 transition-all">
+              <i data-lucide="pause-circle" id="autoStatusIcon" class="w-4 h-4 text-gold-metallic"></i>
+              <span id="autoStatusLabel">Auto-Slide Active</span>
+            </button>
+            <button id="carouselPrevBtn" aria-label="Previous Reel" class="w-10 h-10 rounded-full border border-gold-metallic/40 flex items-center justify-center text-gold-champagne hover:bg-gold-500/20 active:scale-95 transition-all">
+              <i data-lucide="chevron-left" class="w-5 h-5"></i>
+            </button>
+            <button id="carouselNextBtn" aria-label="Next Reel" class="w-10 h-10 rounded-full border border-gold-metallic/40 flex items-center justify-center text-gold-champagne hover:bg-gold-500/20 active:scale-95 transition-all">
+              <i data-lucide="chevron-right" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3D Perspective Carousel Container -->
+        <div class="perspective-container">
+          <div 
+            id="reelsCarouselTrack" 
+            class="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-8 pt-3 snap-x snap-mandatory"
+            style="scroll-behavior: smooth;">
+
+            <!-- Reel 1: SaaS Launch Animation -->
+            <div class="reel-card snap-center shrink-0 w-[270px] sm:w-[310px] aspect-[9/16] rounded-3xl overflow-hidden relative glass-panel-3d border border-gold-metallic/40 shadow-3d-float bg-black group select-none" data-index="0">
+              <!-- Top Stories Progress Track -->
+              <div class="absolute top-3 inset-x-3 z-30 flex gap-1 h-1">
+                <div class="h-full bg-white/30 rounded-full flex-1 overflow-hidden">
+                  <div class="reel-progress-fill h-full bg-gradient-to-r from-gold-metallic to-gold-champagne w-0"></div>
+                </div>
+              </div>
+
+              <!-- Top Header: Handle & Sound Toggle -->
+              <div class="absolute top-6 inset-x-3 z-30 flex items-center justify-between text-white text-xs">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full p-[1.5px] bg-gradient-to-tr from-gold-metallic to-gold-champagne">
+                    <div class="w-full h-full rounded-full bg-black flex items-center justify-center font-bold text-[9px] text-gold-champagne">PK</div>
+                  </div>
+                  <div>
+                    <span class="font-bold flex items-center gap-1 text-[11px] leading-tight">
+                      itspraveen2.0 <i data-lucide="badge-check" class="w-3 h-3 text-gold-metallic"></i>
+                    </span>
+                    <span class="text-[9px] text-gold-champagne/80 font-mono">SaaS Motion Deck</span>
+                  </div>
+                </div>
+
+                <!-- Individual Mute/Unmute Badge -->
+                <button class="reel-audio-btn w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-gold-metallic/50 flex items-center justify-center text-gold-champagne hover:scale-105 transition-transform" title="Toggle audio">
+                  <i data-lucide="volume-x" class="w-3.5 h-3.5 reel-audio-icon"></i>
+                </button>
+              </div>
+
+              <!-- Video: strictly muted by default -->
+              <video
+                class="reel-video w-full h-full object-cover cursor-pointer"
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                poster="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80">
+                <source src="v1.mp4" type="video/mp4">
+              </video>
+
+              <!-- Instagram Engagement Bar -->
+              <div class="absolute right-3 bottom-24 z-30 flex flex-col items-center gap-3 text-white">
+                <button class="flex flex-col items-center gap-0.5" onclick="toggleReelLike(this)">
+                  <div class="w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/15 flex items-center justify-center">
+                    <i data-lucide="heart" class="w-4 h-4 reel-heart-icon transition-transform"></i>
+                  </div>
+                  <span class="text-[10px] font-mono">92.4K</span>
+                </button>
+                <button class="flex flex-col items-center gap-0.5">
+                  <div class="w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/15 flex items-center justify-center">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                  </div>
+                  <span class="text-[10px] font-mono">1.4K</span>
+                </button>
+                <button class="flex flex-col items-center gap-0.5" onclick="shareReel('SaaS 3D Motion Reel')">
+                  <div class="w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/15 flex items-center justify-center">
+                    <i data-lucide="share-2" class="w-4 h-4"></i>
+                  </div>
+                  <span class="text-[10px] font-mono">Share</span>
+                </button>
+              </div>
+
+              <!-- Instagram Bottom Caption -->
+              <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black via-black/75 to-transparent z-20 text-white">
+                <span class="inline-block px-2 py-0.5 rounded-full bg-gold-metallic/20 border border-gold-metallic/40 text-gold-champagne text-[9px] font-mono uppercase tracking-wider mb-1">
+                  #SaaSMotion
+                </span>
+                <p class="text-xs font-medium line-clamp-2 leading-snug">
+                  Isometric 3D UI reveal with synced foley sound design &amp; punchy typography.
+                </p>
+                <div class="flex items-center gap-1.5 mt-2 text-[10px] text-gold-champagne/90 font-mono">
+                  <i data-lucide="music" class="w-3 h-3 text-gold-metallic"></i>
+                  <span class="truncate">Original Audio &bull; Foley &amp; Bass Mix</span>
+                </div>
+              </div>
+
+              <div class="reel-audio-feedback absolute inset-0 m-auto w-12 h-12 rounded-full bg-black/80 border border-gold-metallic text-gold-champagne flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 z-30">
+                <i data-lucide="volume-2" class="w-5 h-5"></i>
+              </div>
+            </div>
+
+            <!-- Reel 2: YouTube Retention Hook -->
+            <div class="reel-card snap-center shrink-0 w-[270px] sm:w-[310px] aspect-[9/16] rounded-3xl overflow-hidden relative glass-panel-3d border border-gold-metallic/40 shadow-3d-float bg-black group select-none" data-index="1">
+              <div class="absolute top-3 inset-x-3 z-30 flex gap-1 h-1">
+                <div class="h-full bg-white/30 rounded-full flex-1 overflow-hidden">
+                  <div class="reel-progress-fill h-full bg-gradient-to-r from-gold-metallic to-gold-champagne w-0"></div>
+                </div>
+              </div>
+
+              <div class="absolute top-6 inset-x-3 z-30 flex items-center justify-between text-white text-xs">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full p-[1.5px] bg-gradient-to-tr from-gold-metallic to-gold-champagne">
+                    <div class="w-full h-full rounded-full bg-black flex items-center justify-center font-bold text-[9px] text-gold-champagne">PK</div>
+                  </div>
+                  <div>
+                    <span class="font-bold flex items-center gap-1 text-[11px] leading-tight">
+                      itspraveen2.0 <i data-lucide="badge-check" class="w-3 h-3 text-gold-metallic"></i>
+                    </span>
+                    <span class="text-[9px] text-gold-champagne/80 font-mono">YouTube Shorts</span>
+                  </div>
+                </div>
+
+                <button class="reel-audio-btn w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-gold-metallic/50 flex items-center justify-center text-gold-champagne hover:scale-105 transition-transform" title="Toggle audio">
+                  <i data-lucide="volume-x" class="w-3.5 h-3.5 reel-audio-icon"></i>
+                </button>
+              </div>
+
+              <video
+                class="reel-video w-full h-full object-cover cursor-pointer"
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                poster="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=600&q=80">
+                <source src="v2.mp4" type="video/mp4">
+              </video>
+
+              <div class="absolute right-3 bottom-24 z-30 flex flex-col items-center gap-3 text-white">
+                <button class="flex flex-col items-center gap-0.5" onclick="toggleReelLike(this)">
+                  <div class="w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/15 flex items-center justify-center">
+                    <i data-lucide="heart" class="w-4 h-4 reel-heart-icon transition-transform"></i>
+                  </div>
+                  <span class="text-[10px] font-mono">180K</span>
+                </button>
+                <button class="flex flex-col items-center gap-0.5">
+                  <div class="w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/15 flex items-center justify-center">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                  </div>
+                  <span class="text-[10px] font-mono">3.2K</span>
+                </button>
+                <button class="flex flex-col items-center gap-0.5" onclick="shareReel('Viral Creator Hook')">
+                  <div class="w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/15 flex items-center justify-center">
+                    <i data-lucide="share-2" class="w-4 h-4"></i>
+                  </div>
+                  <span class="text-[10px] font-mono">Share</span>
+                </button>
+              </div>
+
+              <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black via-black/75 to-transparent z-20 text-white">
+                <span class="inline-block px-2 py-0.5 rounded-full bg-gold-metallic/20 border border-gold-metallic/40 text-gold-champagne text-[9px] font-mono uppercase tracking-wider mb-1">
+                  #RetentionMastery
+                </span>
+                <p class="text-xs font-medium line-clamp-2 leading-snug">
+                  Fast 3-second hook with animated kinetic bold subtitles and speed-ramping.
+                </p>
+                <div class="flex items-center gap-1.5 mt-2 text-[10px] text-gold-champagne/90 font-mono">
+                  <i data-lucide="music" class="w-3 h-3 text-gold-metallic"></i>
+                  <span class="truncate">Cinematic Risers &bull; Vocal Clarity</span>
+                </div>
+              </div>
+
+              <div class="reel-audio-feedback absolute inset-0 m-auto w-12 h-12 rounded-full bg-black/80 border border-gold-metallic text-gold-champagne flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 z-30">
+                <i data-lucide="volume-2" class="w-5 h-5"></i>
+              </div>
+            </div>
+
+            <!-- Reel 3: Wedding Highlight 9:16 -->
+            <div class="reel-card snap-center shrink-0 w-[270px] sm:w-[310px] aspect-[9/16] rounded-3xl overflow-hidden relative glass-panel-3d border border-gold-metallic/40 shadow-3d-float bg-black group select-none" data-index="2">
+              <div class="absolute top-3 inset-x-3 z-30 flex gap-1 h-1">
+                <div class="h-full bg-white/30 rounded-full flex-1 overflow-hidden">
+                  <div class="reel-progress-fill h-full bg-gradient-to-r from-gold-metallic to-gold-champagne w-0"></div>
+                </div>
+              </div>
+
+              <div class="absolute top-6 inset-x-3 z-30 flex items-center justify-between text-white text-xs">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full p-[1.5px] bg-gradient-to-tr from-gold-metallic to-gold-champagne">
+                    <div class="w-full h-full rounded-full bg-black flex items-center justify-center font-bold text-[9px] text-gold-champagne">PK</div>
+                  </div>
+                  <div>
+                    <span class="font-bold flex items-center gap-1 text-[11px] leading-tight">
+                      itspraveen2.0 <i data-lucide="badge-check" class="w-3 h-3 text-gold-metallic"></i>
+                    </span>
+                    <span class="text-[9px] text-gold-champagne/80 font-mono">Wedding Highlights</span>
+                  </div>
+                </div>
+
+                <button class="reel-audio-btn w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-gold-metallic/50 flex items-center justify-center text-gold-champagne hover:scale-105 transition-transform" title="Toggle audio">
+                  <i data-lucide="volume-x" class="w-3.5 h-3.5 reel-audio-icon"></i>
+                </button>
+              </div>
+
+              <video
+                class="reel-video w-full h-full object-cover cursor-pointer"
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                poster="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80">
+                <source src="v3.mp4" type="video/mp4">
+              </video>
+
+              <div class="absolute right-3 bottom-24 z-30 flex flex-col items-center gap-3 text-white">
+                <button class="flex flex-col items-center gap-0.5" onclick="toggleReelLike(this)">
+                  <div class="w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/15 flex items-center justify-center">
+                    <i data-lucide="heart" class="w-4 h-4 reel-heart-icon transition-transform"></i>
+                  </div>
+                  <span class="text-[10px] font-mono">61.5K</span>
+                </button>
+                <button class="flex flex-col items-center gap-0.5">
+                  <div class="w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/15 flex items-center justify-center">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                  </div>
+                  <span class="text-[10px] font-mono">840</span>
+                </button>
+                <button class="flex flex-col items-center gap-0.5" onclick="shareReel('Wedding Film Highlight')">
+                  <div class="w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/15 flex items-center justify-center">
+                    <i data-lucide="share-2" class="w-4 h-4"></i>
+                  </div>
+                  <span class="text-[10px] font-mono">Share</span>
+                </button>
+              </div>
+
+              <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black via-black/75 to-transparent z-20 text-white">
+                <span class="inline-block px-2 py-0.5 rounded-full bg-gold-metallic/20 border border-gold-metallic/40 text-gold-champagne text-[9px] font-mono uppercase tracking-wider mb-1">
+                  #WeddingFilm
+                </span>
+                <p class="text-xs font-medium line-clamp-2 leading-snug">
+                  Filmic champagne color grade, intimate vows sound mastering, and slow-motion pacing.
+                </p>
+                <div class="flex items-center gap-1.5 mt-2 text-[10px] text-gold-champagne/90 font-mono">
+                  <i data-lucide="music" class="w-3 h-3 text-gold-metallic"></i>
+                  <span class="truncate">Acoustic Strings &bull; Tuscany Vows</span>
+                </div>
+              </div>
+
+              <div class="reel-audio-feedback absolute inset-0 m-auto w-12 h-12 rounded-full bg-black/80 border border-gold-metallic text-gold-champagne flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 z-30">
+                <i data-lucide="volume-2" class="w-5 h-5"></i>
+              </div>
+            </div>
+
+            <!-- Reel 4: Commercial Brand Spot -->
+            <div class="reel-card snap-center shrink-0 w-[270px] sm:w-[310px] aspect-[9/16] rounded-3xl overflow-hidden relative glass-panel-3d border border-gold-metallic/40 shadow-3d-float bg-black group select-none" data-index="3">
+              <div class="absolute top-3 inset-x-3 z-30 flex gap-1 h-1">
+                <div class="h-full bg-white/30 rounded-full flex-1 overflow-hidden">
+                  <div class="reel-progress-fill h-full bg-gradient-to-r from-gold-metallic to-gold-champagne w-0"></div>
+                </div>
+              </div>
+
+              <div class="absolute top-6 inset-x-3 z-30 flex items-center justify-between text-white text-xs">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full p-[1.5px] bg-gradient-to-tr from-gold-metallic to-gold-champagne">
+                    <div class="w-full h-full rounded-full bg-black flex items-center justify-center font-bold text-[9px] text-gold-champagne">PK</div>
+                  </div>
+                  <div>
+                    <span class="font-bold flex items-center gap-1 text-[11px] leading-tight">
+                      itspraveen2.0 <i data-lucide="badge-check" class="w-3 h-3 text-gold-metallic"></i>
+                    </span>
+                    <span class="text-[9px] text-gold-champagne/80 font-mono">Brand TVC</span>
+                  </div>
+                </div>
+
+                <button class="reel-audio-btn w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-gold-metallic/50 flex items-center justify-center text-gold-champagne hover:scale-105 transition-transform" title="Toggle audio">
+                  <i data-lucide="volume-x" class="w-3.5 h-3.5 reel-audio-icon"></i>
+                </button>
+              </div>
+
+              <video
+                class="reel-video w-full h-full object-cover cursor-pointer"
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                poster="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=600&q=80">
+                <source src="v1.mp4" type="video/mp4">
+              </video>
+
+              <div class="absolute right-3 bottom-24 z-30 flex flex-col items-center gap-3 text-white">
+                <button class="flex flex-col items-center gap-0.5" onclick="toggleReelLike(this)">
+                  <div class="w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/15 flex items-center justify-center">
+                    <i data-lucide="heart" class="w-4 h-4 reel-heart-icon transition-transform"></i>
+                  </div>
+                  <span class="text-[10px] font-mono">142K</span>
+                </button>
+                <button class="flex flex-col items-center gap-0.5">
+                  <div class="w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/15 flex items-center justify-center">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                  </div>
+                  <span class="text-[10px] font-mono">2.1K</span>
+                </button>
+                <button class="flex flex-col items-center gap-0.5" onclick="shareReel('Commercial Brand TVC')">
+                  <div class="w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/15 flex items-center justify-center">
+                    <i data-lucide="share-2" class="w-4 h-4"></i>
+                  </div>
+                  <span class="text-[10px] font-mono">Share</span>
+                </button>
+              </div>
+
+              <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black via-black/75 to-transparent z-20 text-white">
+                <span class="inline-block px-2 py-0.5 rounded-full bg-gold-metallic/20 border border-gold-metallic/40 text-gold-champagne text-[9px] font-mono uppercase tracking-wider mb-1">
+                  #CommercialTVC
+                </span>
+                <p class="text-xs font-medium line-clamp-2 leading-snug">
+                  High-speed cinematic product turns with gilded 3D lighting flares and foley hits.
+                </p>
+                <div class="flex items-center gap-1.5 mt-2 text-[10px] text-gold-champagne/90 font-mono">
+                  <i data-lucide="music" class="w-3 h-3 text-gold-metallic"></i>
+                  <span class="truncate">Electronic Bass &bull; Sound Design</span>
+                </div>
+              </div>
+
+              <div class="reel-audio-feedback absolute inset-0 m-auto w-12 h-12 rounded-full bg-black/80 border border-gold-metallic text-gold-champagne flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 z-30">
+                <i data-lucide="volume-2" class="w-5 h-5"></i>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <p class="text-center text-[11px] font-mono text-gold-champagne/70 mt-2">
+          &bull; Automatic slideshow cycles every 4s. Hover or tap to pause.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- SELECTED PORTFOLIO GRID -->
+    <section id="featured-works" class="py-20 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="text-xs font-mono tracking-[0.3em] uppercase text-gold-metallic font-semibold">Selected Portfolio</span>
+          <h2 class="text-3xl sm:text-5xl font-cinzel font-bold text-slate-100 mt-2">
+            Signature Visual Productions
+          </h2>
+          <p class="text-sm text-slate-400 mt-2 font-light">
+            YouTube narratives, SaaS animated explainers, commercial campaigns, and cinematic wedding films.
+          </p>
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
+          <button data-filter="all" class="works-filter-btn active-gold-filter px-5 py-2 rounded-full text-xs font-mono font-semibold tracking-wider transition-all gold-gradient-bg text-obsidian-950 shadow-gold-glow">
+            All Works (6)
+          </button>
+          <button data-filter="youtube" class="works-filter-btn px-5 py-2 rounded-full text-xs font-mono font-semibold tracking-wider transition-all glass-panel-3d text-slate-300 hover:text-gold-champagne hover:border-gold-metallic">
+            YouTube
+          </button>
+          <button data-filter="reels" class="works-filter-btn px-5 py-2 rounded-full text-xs font-mono font-semibold tracking-wider transition-all glass-panel-3d text-slate-300 hover:text-gold-champagne hover:border-gold-metallic">
+            9:16 Shorts
+          </button>
+          <button data-filter="saas" class="works-filter-btn px-5 py-2 rounded-full text-xs font-mono font-semibold tracking-wider transition-all glass-panel-3d text-slate-300 hover:text-gold-champagne hover:border-gold-metallic">
+            SaaS &amp; Motion
+          </button>
+          <button data-filter="commercial" class="works-filter-btn px-5 py-2 rounded-full text-xs font-mono font-semibold tracking-wider transition-all glass-panel-3d text-slate-300 hover:text-gold-champagne hover:border-gold-metallic">
+            Commercial &amp; Weddings
+          </button>
+        </div>
+
+        <!-- 3D Card Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="worksGrid">
+          
+          <!-- Card 1 -->
+          <div class="work-card glass-panel-3d rounded-3xl overflow-hidden border border-gold-metallic/30 hover:border-gold-metallic transition-all duration-500 flex flex-col group perspective-container" data-category="youtube">
+            <div class="relative aspect-video overflow-hidden cursor-pointer" onclick="openWorkModal('Apex Tech Documentary', 'v3.mp4', 'YouTube Longform &bull; 1.8M Views &bull; Premiere Pro &amp; AE')">
+              <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" alt="Apex Tech" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                <div class="w-12 h-12 rounded-full gold-gradient-bg text-obsidian-950 flex items-center justify-center shadow-gold-glow group-hover:scale-110 transition-transform">
+                  <i data-lucide="play" class="w-5 h-5 fill-obsidian-950"></i>
+                </div>
+              </div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/75 backdrop-blur-md border border-gold-metallic/40 text-[10px] font-mono text-gold-champagne">
+                YOUTUBE &bull; 1.8M VIEWS
+              </span>
+              <span class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-black/80 text-[10px] font-mono text-gold-champagne">
+                12:44
+              </span>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <p class="text-[10px] font-mono uppercase tracking-widest text-gold-metallic mb-1">Apex Hardware Review</p>
+                <h4 class="font-cinzel font-bold text-lg text-slate-100 group-hover:text-gold-champagne transition-colors">
+                  Next-Gen Custom Rig Architecture
+                </h4>
+                <p class="text-xs text-slate-400 mt-2 font-light line-clamp-2 leading-relaxed">
+                  Paced cut with 3D camera tracks, motion graphic lower-thirds, and high-CTR custom thumbnail design.
+                </p>
+              </div>
+              <div class="pt-4 mt-4 border-t border-gold-metallic/15 flex items-center justify-between text-xs font-mono text-gold-champagne">
+                <span>Premiere Pro &bull; After Effects</span>
+                <span class="flex items-center gap-1 group-hover:translate-x-1 transition-transform">Play Preview &rarr;</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="work-card glass-panel-3d rounded-3xl overflow-hidden border border-gold-metallic/30 hover:border-gold-metallic transition-all duration-500 flex flex-col group perspective-container" data-category="saas">
+            <div class="relative aspect-video overflow-hidden cursor-pointer" onclick="openWorkModal('FlowMetrics Isometric UI Motion', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4', 'SaaS Product Launch &bull; After Effects 3D UI')">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="FlowMetrics" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                <div class="w-12 h-12 rounded-full gold-gradient-bg text-obsidian-950 flex items-center justify-center shadow-gold-glow group-hover:scale-110 transition-transform">
+                  <i data-lucide="play" class="w-5 h-5 fill-obsidian-950"></i>
+                </div>
+              </div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/75 backdrop-blur-md border border-gold-metallic/40 text-[10px] font-mono text-gold-champagne">
+                SAAS EXPLAINER
+              </span>
+              <span class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-black/80 text-[10px] font-mono text-gold-champagne">
+                01:30
+              </span>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <p class="text-[10px] font-mono uppercase tracking-widest text-gold-metallic mb-1">FlowMetrics Inc</p>
+                <h4 class="font-cinzel font-bold text-lg text-slate-100 group-hover:text-gold-champagne transition-colors">
+                  Isometric Cloud Analytics Deck
+                </h4>
+                <p class="text-xs text-slate-400 mt-2 font-light line-clamp-2 leading-relaxed">
+                  Vector UI mockups in After Effects, smooth camera rotations, and tactile interface foley sound.
+                </p>
+              </div>
+              <div class="pt-4 mt-4 border-t border-gold-metallic/15 flex items-center justify-between text-xs font-mono text-gold-champagne">
+                <span>After Effects &bull; UI Motion</span>
+                <span class="flex items-center gap-1 group-hover:translate-x-1 transition-transform">Play Preview &rarr;</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="work-card glass-panel-3d rounded-3xl overflow-hidden border border-gold-metallic/30 hover:border-gold-metallic transition-all duration-500 flex flex-col group perspective-container" data-category="reels">
+            <div class="relative aspect-video overflow-hidden cursor-pointer" onclick="openWorkModal('Pulse Athletica Viral Campaign', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4', 'Social Media 9:16 &bull; 3.2M Impressions')">
+              <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80" alt="Pulse Athletica" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                <div class="w-12 h-12 rounded-full gold-gradient-bg text-obsidian-950 flex items-center justify-center shadow-gold-glow group-hover:scale-110 transition-transform">
+                  <i data-lucide="play" class="w-5 h-5 fill-obsidian-950"></i>
+                </div>
+              </div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/75 backdrop-blur-md border border-gold-metallic/40 text-[10px] font-mono text-gold-champagne">
+                9:16 VIRAL
+              </span>
+              <span class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-black/80 text-[10px] font-mono text-gold-champagne">
+                00:45
+              </span>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <p class="text-[10px] font-mono uppercase tracking-widest text-gold-metallic mb-1">Pulse Athletica</p>
+                <h4 class="font-cinzel font-bold text-lg text-slate-100 group-hover:text-gold-champagne transition-colors">
+                  Kinetic Subtitles &amp; Audio Hooks
+                </h4>
+                <p class="text-xs text-slate-400 mt-2 font-light line-clamp-2 leading-relaxed">
+                  Fast rhythm transitions mapped to drum transients, pop-in animated captions, and audio risers.
+                </p>
+              </div>
+              <div class="pt-4 mt-4 border-t border-gold-metallic/15 flex items-center justify-between text-xs font-mono text-gold-champagne">
+                <span>Premiere Pro &bull; Subtitles</span>
+                <span class="flex items-center gap-1 group-hover:translate-x-1 transition-transform">Play Preview &rarr;</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="work-card glass-panel-3d rounded-3xl overflow-hidden border border-gold-metallic/30 hover:border-gold-metallic transition-all duration-500 flex flex-col group perspective-container" data-category="commercial">
+            <div class="relative aspect-video overflow-hidden cursor-pointer" onclick="openWorkModal('Tuscany Villa Vows', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4', 'Luxury Wedding Film &bull;  4K')">
+              <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Wedding Film" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                <div class="w-12 h-12 rounded-full gold-gradient-bg text-obsidian-950 flex items-center justify-center shadow-gold-glow group-hover:scale-110 transition-transform">
+                  <i data-lucide="play" class="w-5 h-5 fill-obsidian-950"></i>
+                </div>
+              </div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/75 backdrop-blur-md border border-gold-metallic/40 text-[10px] font-mono text-gold-champagne">
+                WEDDING MASTER
+              </span>
+              <span class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-black/80 text-[10px] font-mono text-gold-champagne">
+                07:20
+              </span>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <p class="text-[10px] font-mono uppercase tracking-widest text-gold-metallic mb-1">Florence, Italy</p>
+                <h4 class="font-cinzel font-bold text-lg text-slate-100 group-hover:text-gold-champagne transition-colors">
+                  The Golden Hour Vows
+                </h4>
+                <p class="text-xs text-slate-400 mt-2 font-light line-clamp-2 leading-relaxed">
+                   warm champagne color grading, multi-mic voice leveling, and drone sequences.
+                </p>
+              </div>
+              <div class="pt-4 mt-4 border-t border-gold-metallic/15 flex items-center justify-between text-xs font-mono text-gold-champagne">
+                <span> &bull; Sound Design</span>
+                <span class="flex items-center gap-1 group-hover:translate-x-1 transition-transform">Play Preview &rarr;</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="work-card glass-panel-3d rounded-3xl overflow-hidden border border-gold-metallic/30 hover:border-gold-metallic transition-all duration-500 flex flex-col group perspective-container" data-category="commercial">
+            <div class="relative aspect-video overflow-hidden cursor-pointer" onclick="openWorkModal('Aura Fragrances TV Commercial', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4', 'Broadcast Commercial &bull; 4K Master Spec')">
+              <img src="https://images.unsplash.com/photo-1527061011665-3652c757a4d4?auto=format&fit=crop&w=800&q=80" alt="Commercial" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                <div class="w-12 h-12 rounded-full gold-gradient-bg text-obsidian-950 flex items-center justify-center shadow-gold-glow group-hover:scale-110 transition-transform">
+                  <i data-lucide="play" class="w-5 h-5 fill-obsidian-950"></i>
+                </div>
+              </div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/75 backdrop-blur-md border border-gold-metallic/40 text-[10px] font-mono text-gold-champagne">
+                COMMERCIAL SPOT
+              </span>
+              <span class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-black/80 text-[10px] font-mono text-gold-champagne">
+                00:30
+              </span>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <p class="text-[10px] font-mono uppercase tracking-widest text-gold-metallic mb-1">Aura Fragrances</p>
+                <h4 class="font-cinzel font-bold text-lg text-slate-100 group-hover:text-gold-champagne transition-colors">
+                  Artisan Essence TV Spot
+                </h4>
+                <p class="text-xs text-slate-400 mt-2 font-light line-clamp-2 leading-relaxed">
+                  Speed-ramped macro product capture, gilded lighting highlights, and pristine foley.
+                </p>
+              </div>
+              <div class="pt-4 mt-4 border-t border-gold-metallic/15 flex items-center justify-between text-xs font-mono text-gold-champagne">
+                <span>Color Grade &bull; Sound FX</span>
+                <span class="flex items-center gap-1 group-hover:translate-x-1 transition-transform">Play Preview &rarr;</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="work-card glass-panel-3d rounded-3xl overflow-hidden border border-gold-metallic/30 hover:border-gold-metallic transition-all duration-500 flex flex-col group perspective-container" data-category="youtube">
+            <div class="relative aspect-video overflow-hidden cursor-pointer" onclick="openWorkModal('Tokyo Midnight B-Roll Quest', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4', 'YouTube Vlog &bull; 980K Views')">
+              <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80" alt="Travel Vlog" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                <div class="w-12 h-12 rounded-full gold-gradient-bg text-obsidian-950 flex items-center justify-center shadow-gold-glow group-hover:scale-110 transition-transform">
+                  <i data-lucide="play" class="w-5 h-5 fill-obsidian-950"></i>
+                </div>
+              </div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/75 backdrop-blur-md border border-gold-metallic/40 text-[10px] font-mono text-gold-champagne">
+                YOUTUBE &bull; 980K VIEWS
+              </span>
+              <span class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-black/80 text-[10px] font-mono text-gold-champagne">
+                16:15
+              </span>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <p class="text-[10px] font-mono uppercase tracking-widest text-gold-metallic mb-1">Nomad Chronicles</p>
+                <h4 class="font-cinzel font-bold text-lg text-slate-100 group-hover:text-gold-champagne transition-colors">
+                  Tokyo Neon Street Immersion
+                </h4>
+                <p class="text-xs text-slate-400 mt-2 font-light line-clamp-2 leading-relaxed">
+                  Cinematic sound immersion with foley footsteps, custom animated map routes in After Effects.
+                </p>
+              </div>
+              <div class="pt-4 mt-4 border-t border-gold-metallic/15 flex items-center justify-between text-xs font-mono text-gold-champagne">
+                <span>Premiere Pro &bull; After Effects</span>
+                <span class="flex items-center gap-1 group-hover:translate-x-1 transition-transform">Play Preview &rarr;</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EXPERIENCE & LEADERSHIP SECTION -->
+    <section id="about-philosophy" class="py-20 relative bg-obsidian-900/40 border-t border-gold-metallic/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Left: 3D Experience Plaque with Download CV trigger -->
+          <div class="lg:col-span-5 perspective-container">
+            <div class="glass-panel-3d rounded-3xl p-8 border border-gold-metallic/40 shadow-3d-float space-y-6">
+              <div class="flex items-center justify-between pb-4 border-b border-gold-metallic/20">
+                <span class="font-cinzel font-bold text-lg text-gold-champagne">Mastery Profile</span>
+                <span class="px-3 py-1 rounded-full bg-gold-500/10 text-gold-metallic text-[11px] font-mono">2024 – 2026</span>
+              </div>
+
+              <div class="space-y-4 text-xs font-mono text-slate-300">
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 rounded-full bg-gold-metallic mt-1.5 shrink-0"></div>
+                  <div>
+                    <strong class="text-gold-champagne font-semibold block">Post-Production Direction:</strong>
+                    Adobe Premiere Pro, After Effects, Photoshop.
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 rounded-full bg-gold-metallic mt-1.5 shrink-0"></div>
+                  <div>
+                    <strong class="text-gold-champagne font-semibold block">Disciplines:</strong>
+                    Video editing, motion graphics, subtitles, color correction, sound design, thumbnails, and social-media content.
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 rounded-full bg-gold-metallic mt-1.5 shrink-0"></div>
+                  <div>
+                    <strong class="text-gold-champagne font-semibold block">Technical &amp; Leadership:</strong>
+                    Website development and team management, coordinating projects, assigning tasks, communicating with clients, and maintaining quality and delivery timelines.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Instant CV preview action -->
+              <div class="pt-4 border-t border-gold-metallic/20">
+                <button onclick="openCvModal()" class="w-full py-3.5 rounded-2xl gold-gradient-bg text-obsidian-950 font-cinzel font-bold text-xs uppercase tracking-widest shadow-gold-glow hover:scale-[1.02] transition-transform flex items-center justify-center gap-2">
+                  <i data-lucide="file-text" class="w-4 h-4 fill-obsidian-950"></i>
+                  <span>Inspect &amp; Download Full CV</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Leadership & Creative Narrative -->
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-2 text-xs font-mono tracking-[0.3em] uppercase text-gold-metallic font-semibold">
+              <i data-lucide="compass" class="w-4 h-4"></i>
+              Execution &amp; Management Excellence
+            </div>
+
+            <h3 class="text-3xl sm:text-4xl font-cinzel font-bold text-slate-100 leading-snug">
+              Bridging Creative Vision with <span class="gold-gradient-text">Flawless Delivery</span>.
+            </h3>
+
+            <div class="space-y-4 text-sm text-slate-300 font-light leading-relaxed">
+              <p>
+                Alongside creative work, I have experience in website development and team management, including coordinating projects, assigning tasks, communicating with clients, and maintaining quality and delivery timelines. I enjoy turning raw footage and ideas into clean, engaging, and professional visual content.
+              </p>
+              <p>
+                Over 2+ years of freelance experience, I have developed a multi-layered workflow that prevents creative drift. Every cut is grounded in narrative rhythm, every sound transient is synchronized with intention, and clients receive proactive milestone previews to guarantee on-time launches.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <div class="p-4 rounded-2xl glass-panel-3d border-gold-metallic/25">
+                <p class="font-cinzel font-bold text-gold-champagne text-sm">3D Motion &amp; Kinetic UI</p>
+                <p class="text-xs text-slate-400 mt-1 font-light">Custom After Effects typography, camera sweeps, and retention-focused visual hooks.</p>
+              </div>
+              <div class="p-4 rounded-2xl glass-panel-3d border-gold-metallic/25">
+                <p class="font-cinzel font-bold text-gold-champagne text-sm">Team &amp; Delivery Management</p>
+                <p class="text-xs text-slate-400 mt-1 font-light">Structured Trello/Frame.io review pipelines, strict timeline adherence, and direct client care.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HIRE ME / CONTACT SECTION -->
+    <section id="contact-booking" class="py-20 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          <!-- Contact Left info -->
+          <div class="lg:col-span-5 space-y-6">
+            <span class="text-xs font-mono tracking-[0.3em] uppercase text-gold-metallic font-semibold">Initiate Project</span>
+            <h2 class="text-3xl sm:text-5xl font-cinzel font-bold text-slate-100 leading-tight">
+              Ready to Hire Me for Your Next Cut?
+            </h2>
+            <p class="text-sm text-slate-400 font-light leading-relaxed">
+              Whether you need high-retention YouTube longform, vertical social reels, a full SaaS launch video, or a monthly video editing retainer—fill out the brief below and I'll respond within 24 hours.
+            </p>
+
+            <div class="space-y-4 pt-2">
+              <div class="flex items-center gap-3.5">
+                <div class="w-10 h-10 rounded-full border border-gold-metallic/40 flex items-center justify-center text-gold-champagne bg-gold-950/30">
+                  <i data-lucide="mail" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <p class="text-[10px] font-mono uppercase tracking-widest text-slate-400">Direct Email</p>
+                  <p class="font-mono text-xs font-semibold text-slate-200 hover:text-gold-champagne cursor-pointer" onclick="copyContactEmail('praveenkumarcse2001@gmail.com')">
+                    praveenkumarcse2001@gmail.com
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3.5">
+                <div class="w-10 h-10 rounded-full border border-gold-metallic/40 flex items-center justify-center text-gold-champagne bg-gold-950/30">
+                  <i data-lucide="message-square" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <p class="text-[10px] font-mono uppercase tracking-widest text-slate-400">Direct Messaging</p>
+                  <p class="font-mono text-xs font-semibold text-slate-200">WhatsApp &bull; Telegram &bull; Slack</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="pt-4">
+              <p class="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-400 mb-3">Professional Channels</p>
+              <div class="flex items-center gap-3">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full glass-panel-3d flex items-center justify-center text-gold-champagne hover:scale-110 hover:border-gold-metallic transition-all" title="Instagram">
+                  <i data-lucide="instagram" class="w-4 h-4"></i>
+                </a>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full glass-panel-3d flex items-center justify-center text-gold-champagne hover:scale-110 hover:border-gold-metallic transition-all" title="YouTube">
+                  <i data-lucide="youtube" class="w-4 h-4"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full glass-panel-3d flex items-center justify-center text-gold-champagne hover:scale-110 hover:border-gold-metallic transition-all" title="LinkedIn">
+                  <i data-lucide="linkedin" class="w-4 h-4"></i>
+                </a>
+                <button onclick="openCvModal()" class="w-10 h-10 rounded-full glass-panel-3d flex items-center justify-center text-gold-champagne hover:scale-110 hover:border-gold-metallic transition-all" title="Download CV">
+                  <i data-lucide="download" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: 3D Booking Form Card -->
+          <div class="lg:col-span-7 perspective-container">
+            <div class="glass-panel-3d rounded-3xl p-7 sm:p-9 border border-gold-metallic/40 shadow-3d-float relative">
+              <div class="flex items-center justify-between mb-6 pb-4 border-b border-gold-metallic/15">
+                <h3 class="font-cinzel text-xl font-bold text-slate-100">Editing &bull; Hire Me</h3>
+                <span class="text-[11px] font-mono text-gold-metallic">⚡ Fast 24h Response</span>
+              </div>
+
+              <form id="hireMeForm" action="https://formspree.io/f/mkgzjorg"
+  method="POST" class="space-y-4" >
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-1.5" for="clientName">Your Name / Brand</label>
+                    <input type="text" id="clientName" name="Name"required placeholder="e.g. Julian Vance" class="w-full px-4 py-3 rounded-xl bg-obsidian-950 border border-gold-metallic/30 focus:border-gold-metallic focus:outline-none text-slate-100 text-xs">
+                  </div>
+                  <div>
+                    <label class="block text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-1.5" for="clientEmail">Email Address</label>
+                    <input type="email" id="clientEmail" name="Email"required placeholder="julian@brand.co" class="w-full px-4 py-3 rounded-xl bg-obsidian-950 border border-gold-metallic/30 focus:border-gold-metallic focus:outline-none text-slate-100 text-xs">
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-1.5" for="projectType">Project Scope</label>
+                    <select id="projectType" name="Service"class="w-full px-4 py-3 rounded-xl bg-obsidian-950 border border-gold-metallic/30 focus:border-gold-metallic focus:outline-none text-slate-100 text-xs">
+                      <option value="youtube">YouTube Longform &bull; Retention Edit</option>
+                      <option value="reels">Vertical 9:16 Reels / TikTok Sprint</option>
+                      <option value="saas">SaaS Product Explainer Animation</option>
+                      <option value="commercial">Commercial Campaign &amp; TVC</option>
+                      <option value="wedding">Cinematic Wedding Highlight Film</option>
+                      <option value="monthly">Monthly Retainer &amp; Team Management</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-1.5" for="budgetSelect">Estimated Investment</label>
+                    <select id="budgetSelect" name="Budget" class="w-full px-4 py-3 rounded-xl bg-obsidian-950 border border-gold-metallic/30 focus:border-gold-metallic focus:outline-none text-slate-100 text-xs">
+                      <option value="750-1500">$750 – $1,500</option>
+                      <option value="1500-3500">$1,500 – $3,500</option>
+                      <option value="3500-6000">$3,500 – $6,000</option>
+                      <option value="retainer">Monthly Retainer ($3,000+/mo)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-1.5" for="footageLink">Raw Footage / Reference Link (Drive, Frame.io, Dropbox)</label>
+                  <input type="url" id="footageLink" name="GDrive" placeholder="https://drive.google.com/... or reference video link" class="w-full px-4 py-3 rounded-xl bg-obsidian-950 border border-gold-metallic/30 focus:border-gold-metallic focus:outline-none text-slate-100 text-xs font-mono">
+                </div>
+
+                <div>
+                  <label class="block text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-1.5" for="projectBrief">Project Deliverables &amp; Details</label>
+                  <textarea id="projectBrief" rows="3" name="Message" required placeholder="Describe target runtime, deadline, tone, sound requirements, or team coordination needs..." class="w-full px-4 py-3 rounded-xl bg-obsidian-950 border border-gold-metallic/30 focus:border-gold-metallic focus:outline-none text-slate-100 text-xs resize-none"></textarea>
+                </div>
+
+                <button type="submit" id="hireMeSubmitBtn" class="w-full py-4 rounded-full gold-gradient-bg text-obsidian-950 font-cinzel font-bold text-xs uppercase tracking-[0.2em] shadow-gold-glow hover:shadow-gold-glow-lg transition-all flex items-center justify-center gap-2">
+                  <i data-lucide="sparkles" class="w-4 h-4 fill-obsidian-950"></i>
+                  <span>Submit Editing Request</span>
+                </button>
+              </form>
+
+              <!-- Success Alert -->
+              <div id="hireSuccessAlert" class="hidden mt-4 p-4 rounded-xl bg-gold-950/50 border border-gold-metallic/60 text-gold-champagne text-xs font-mono text-center">
+                ✓ Editing brief transmitted successfully. I will review your footage link and reply within 24 hours.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-gold-metallic/20 bg-obsidian-950 py-10 relative z-10 text-xs text-slate-500 font-mono">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2 text-slate-300">
+        <span class="w-2 h-2 rounded-full bg-gold-metallic"></span>
+        <span class="font-cinzel tracking-wider text-gold-champagne font-bold">PRAVEENKUMAR</span> &mdash; Video Editor &amp; Motion Designer
+      </div>
+      <div class="text-[11px] text-slate-400">
+        Premiere Pro &bull; After Effects &bull; Photoshop
+      </div>
+      <div class="text-slate-500 text-[11px]">
+        &copy; <span id="currentYear"></span> Praveenkumar. All Rights Reserved.
+      </div>
     </div>
-    <!-- END Page Container -->
-  </body>
- </html>
+  </footer>
+
+  <!-- LIGHTBOX PREVIEW MODAL -->
+  <div id="workVideoModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="relative w-full max-w-4xl bg-obsidian-950 rounded-3xl overflow-hidden border border-gold-metallic/40 shadow-3d-float">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-gold-metallic/20 bg-obsidian-900">
+        <div>
+          <h3 id="modalVideoTitle" class="font-cinzel font-bold text-gold-champagne text-base">Project Preview</h3>
+          <p id="modalVideoMeta" class="text-[11px] font-mono text-slate-400 mt-0.5">Details</p>
+        </div>
+        <button onclick="closeWorkModal()" aria-label="Close Preview" class="p-2 rounded-full text-slate-400 hover:text-gold-champagne hover:bg-gold-950/40 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="relative aspect-video bg-black flex items-center justify-center">
+        <video id="modalVideoTag" class="w-full h-full object-contain" controls playsinline>
+          <source src="" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+      </div>
+
+      <div class="px-6 py-3 bg-obsidian-900 flex items-center justify-between text-xs text-slate-400 font-mono">
+        <span>Audio unmuted on user modal trigger &bull; ESC to close</span>
+        <a href="#contact-booking" onclick="closeWorkModal()" class="text-gold-metallic hover:underline font-bold">Editing Project &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CURRICULUM VITAE MODAL -->
+  <div id="cvModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-obsidian-950 rounded-3xl border border-gold-metallic/50 shadow-3d-float p-6 sm:p-10 text-slate-200">
+      
+     <!-- Top Action Bar (Print / Download / Close) -->
+      <div class="flex items-center justify-between pb-6 border-b border-gold-metallic/20 no-print">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-gold-metallic"></span>
+          <span class="font-cinzel font-bold text-sm tracking-widest text-gold-champagne">Official Curriculum Vitae</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="cv.pdf" download="Praveenkumar-cv.pdf" class="px-3.5 py-1.5 rounded-full border border-gold-metallic/50 text-gold-champagne hover:bg-gold-500/20 text-xs font-mono flex items-center gap-1.5 transition-all">
+            <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+            <span>Print / Save PDF</span>
+          </a>
+          <button onclick="closeCvModal()" class="p-2 text-slate-400 hover:text-white transition-colors">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- CV Document Body -->
+      <div id="cvModalContent" class="space-y-6 pt-6">
+        
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gold-metallic/15 pb-6">
+          <div>
+            <h1 class="text-2xl sm:text-3xl font-cinzel font-bold gold-gradient-text">PRAVEENKUMAR</h1>
+            <p class="font-mono text-xs uppercase tracking-widest text-gold-champagne mt-1">Video Editor &amp; Motion Designer</p>
+          </div>
+          <div class="text-xs font-mono text-slate-400 space-y-1 sm:text-right">
+            <p>praveenkumarcse2001@gmail.com</p>
+            <p>2+ Years Freelance Mastery</p>
+            <p>Remote / Global Availability</p>
+          </div>
+        </div>
+
+        <!-- Summary -->
+        <div>
+          <h2 class="text-xs font-cinzel font-bold uppercase tracking-widest text-gold-metallic mb-2">Professional Summary</h2>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
+            Creative and detail-oriented Video Editor &amp; Motion Designer with 2+ years of freelance experience creating engaging content for YouTube, social media, commercial brands, weddings, and SaaS businesses. Skilled in Adobe Premiere Pro, After Effects, and Photoshop, with experience in video editing, motion graphics, subtitles, color correction, sound design, thumbnails, and social-media content. Alongside creative work, I have experience in website development and team management, including coordinating projects, assigning tasks, communicating with clients, and maintaining quality and delivery timelines. I enjoy turning raw footage and ideas into clean, engaging, and professional visual content.
+          </p>
+        </div>
+
+        <!-- Technical Competencies -->
+        <div>
+          <h2 class="text-xs font-cinzel font-bold uppercase tracking-widest text-gold-metallic mb-2">Core Tools &amp; Disciplines</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
+            <div class="p-3 rounded-xl bg-obsidian-900 border border-gold-metallic/20">
+              <span class="text-gold-champagne font-bold block mb-1">Post-Production Software</span>
+              Adobe Premiere Pro, After Effects, Photoshop, 
+            </div>
+            <div class="p-3 rounded-xl bg-obsidian-900 border border-gold-metallic/20">
+              <span class="text-gold-champagne font-bold block mb-1">Creative Capabilities</span>
+              Paced Narrative Cutting, Motion Graphics, Subtitles, Sound Design, Foley, Color Timing
+            </div>
+            <div class="p-3 rounded-xl bg-obsidian-900 border border-gold-metallic/20">
+              <span class="text-gold-champagne font-bold block mb-1">Formats &amp; Verticals</span>
+              YouTube Longform, 9:16 Reels &amp; TikToks, SaaS Product Walkthroughs, Commercial TVCs, Weddings
+            </div>
+            <div class="p-3 rounded-xl bg-obsidian-900 border border-gold-metallic/20">
+              <span class="text-gold-champagne font-bold block mb-1">Leadership &amp; Technical</span>
+              Website Development, Team Management, Task Assignment, Client Communication, Delivery Timelines
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience Timeline -->
+        <div>
+          <h2 class="text-xs font-cinzel font-bold uppercase tracking-widest text-gold-metallic mb-3">Professional Experience</h2>
+          
+          <div class="space-y-4 text-xs">
+            <div class="border-l-2 border-gold-metallic/40 pl-4 py-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-gold-champagne">Freelance Video Editor &amp; Motion Designer</span>
+                <span class="font-mono text-slate-400">2024 &ndash; Present</span>
+              </div>
+              <p class="text-slate-400 mt-1 leading-relaxed font-light">
+                Spearheaded full-cycle video production for 150+ client deliverables across SaaS founders, creators, and commercial wedding agencies. Engineered dynamic captions and sound accents that boosted retention by up to 25%.
+              </p>
+            </div>
+
+            <div class="border-l-2 border-gold-metallic/40 pl-4 py-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-gold-champagne">Project Coordinator &amp; Web Developer</span>
+                <span class="font-mono text-slate-400">2023 &ndash; Present</span>
+              </div>
+              <p class="text-slate-400 mt-1 leading-relaxed font-light">
+                Coordinated digital assets, deployed interactive web interfaces, and managed post-production workflows with multiple team members to ensure pristine delivery within contract deadlines.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Action CTA -->
+        <div class="pt-6 border-t border-gold-metallic/20 flex flex-col sm:flex-row items-center justify-between gap-4 no-print">
+          <span class="text-xs font-mono text-slate-400">Ready to discuss your project?</span>
+          <a href="#contact-booking" onclick="closeCvModal()" class="px-6 py-2.5 rounded-full gold-gradient-bg text-obsidian-950 font-cinzel font-bold text-xs uppercase tracking-wider shadow-gold-glow">
+            Editing / Hire Praveenkumar &rarr;
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    /* =========================================================================
+       0. CINEMATIC LUXURY PRELOADER CONTROLLER (ZERO COLLISION LIFECYCLE)
+       ========================================================================= */
+    (function initCinematicPreloader() {
+      const preloader = document.getElementById('cinePreloader');
+      if (!preloader) return;
+
+      const flare = document.getElementById('preloaderFlare');
+      const tcDisplay = document.getElementById('preloaderTC');
+      const progressBar = document.getElementById('preloaderBar');
+      const pctDisplay = document.getElementById('preloaderPct');
+      const statusText = document.getElementById('preloaderStatusText');
+
+      let progress = 0;
+      let frames = 18;
+      let isExited = false;
+
+      // Running timecode tick (60 FPS)
+      const tcTimer = setInterval(() => {
+        frames += 2;
+        const ff = frames % 60;
+        const ss = Math.floor(frames / 60) % 60;
+        const mm = Math.floor(frames / 3600);
+        if (tcDisplay) {
+          tcDisplay.textContent = `00:0${mm}:0${ss}:${ff < 10 ? '0' + ff : ff}`;
+        }
+      }, 35);
+
+      // Smooth percentage progression
+      const progressTimer = setInterval(() => {
+        progress += Math.floor(Math.random() * 8) + 3;
+        if (progress > 95) progress = 95;
+
+        if (progressBar) progressBar.style.width = progress + '%';
+        if (pctDisplay) pctDisplay.textContent = progress + '%';
+
+        if (progress > 40 && statusText) statusText.textContent = 'SYNCING 4K TIMELINE';
+        if (progress > 75 && statusText) statusText.textContent = 'COLOR & SOUND MASTER';
+      }, 40);
+
+      // Complete preloader and cleanly release DOM
+      function finishPreloader() {
+        if (isExited) return;
+        isExited = true;
+
+        clearInterval(progressTimer);
+        clearInterval(tcTimer);
+
+        if (progressBar) progressBar.style.width = '100%';
+        if (pctDisplay) pctDisplay.textContent = '100%';
+        if (statusText) statusText.textContent = 'READY TO PLAY';
+
+        if (flare) flare.classList.add('flare-flash');
+
+        setTimeout(() => {
+          preloader.classList.add('preloader-hidden');
+          document.body.style.overflow = 'visible';
+
+          // Safe teardown: removes node from DOM to ensure 100% click pass-through
+          setTimeout(() => {
+            if (preloader.parentNode) {
+              preloader.parentNode.removeChild(preloader);
+            }
+          }, 700);
+        }, 300);
+      }
+
+      // Complete when window load is fired
+      if (document.readyState === 'complete') {
+        setTimeout(finishPreloader, 600);
+      } else {
+        window.addEventListener('load', () => {
+          setTimeout(finishPreloader, 400);
+        });
+      }
+
+      // Safety fail-safe timeout: never hold the user longer than 2.2 seconds
+      setTimeout(finishPreloader, 2200);
+    })();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) lucide.createIcons();
+      const currentYearElem = document.getElementById('currentYear');
+      if (currentYearElem) currentYearElem.textContent = new Date().getFullYear();
+      initThreeScene();
+      initTiltCard();
+      initAvatarUpload();
+    });
+
+    /* =========================================================================
+       1. THREE.JS 3D SCENE: FLOATING GOLD GEOMETRIC PARTICLES & FILM REEL TORUS
+       ========================================================================= */
+    let scene, camera, renderer, goldParticles, floatingDodeca, goldTorus;
+    let mouseX = 0, mouseY = 0;
+    let targetX = 0, targetY = 0;
+
+    function initThreeScene() {
+      const canvas = document.getElementById('threeCanvas');
+      if (!canvas) return;
+
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.z = 25;
+
+      renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      // Golden Point & Ambient Lighting
+      const ambientLight = new THREE.AmbientLight(0xfff3cc, 0.6);
+      scene.add(ambientLight);
+
+      const pointLight = new THREE.PointLight(0xD4AF37, 2.5, 80);
+      pointLight.position.set(10, 15, 20);
+      scene.add(pointLight);
+
+      const secondLight = new THREE.PointLight(0xF3E5AB, 1.8, 80);
+      secondLight.position.set(-15, -10, 15);
+      scene.add(secondLight);
+
+      // 1. Floating Gold Particles
+      const particleCount = 180;
+      const geometry = new THREE.BufferGeometry();
+      const positions = new Float32Array(particleCount * 3);
+      const scales = new Float32Array(particleCount);
+
+      for (let i = 0; i < particleCount * 3; i += 3) {
+        positions[i] = (Math.random() - 0.5) * 55;
+        positions[i + 1] = (Math.random() - 0.5) * 45;
+        positions[i + 2] = (Math.random() - 0.5) * 35;
+        scales[i / 3] = Math.random() * 2 + 0.5;
+      }
+
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      const particleMat = new THREE.PointsMaterial({
+        color: 0xD4AF37,
+        size: 0.28,
+        transparent: true,
+        opacity: 0.75,
+        blending: THREE.AdditiveBlending
+      });
+
+      goldParticles = new THREE.Points(geometry, particleMat);
+      scene.add(goldParticles);
+
+      // 2. Floating Gold Geometric Ring (Stylized Film Reel)
+      const torusGeo = new THREE.TorusGeometry(8, 0.08, 16, 100);
+      const goldMat = new THREE.MeshStandardMaterial({
+        color: 0xD4AF37,
+        metalness: 0.9,
+        roughness: 0.2,
+        wireframe: true
+      });
+      goldTorus = new THREE.Mesh(torusGeo, goldMat);
+      goldTorus.position.set(12, 4, -5);
+      scene.add(goldTorus);
+
+      // 3. Floating 3D Geometric Dodecahedron
+      const dodecaGeo = new THREE.DodecahedronGeometry(2.8, 0);
+      const dodecaMat = new THREE.MeshStandardMaterial({
+        color: 0xC59B27,
+        metalness: 0.85,
+        roughness: 0.25,
+        wireframe: true
+      });
+      floatingDodeca = new THREE.Mesh(dodecaGeo, dodecaMat);
+      floatingDodeca.position.set(-14, -4, -4);
+      scene.add(floatingDodeca);
+
+      window.addEventListener('resize', onThreeResize);
+      window.addEventListener('mousemove', onMouseMoveParallax);
+
+      animateThree();
+    }
+
+    function onThreeResize() {
+      if (!camera || !renderer) return;
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    function onMouseMoveParallax(e) {
+      mouseX = (e.clientX - window.innerWidth / 2) * 0.001;
+      mouseY = (e.clientY - window.innerHeight / 2) * 0.001;
+    }
+
+    function animateThree() {
+      requestAnimationFrame(animateThree);
+
+      targetX += (mouseX - targetX) * 0.05;
+      targetY += (mouseY - targetY) * 0.05;
+
+      if (goldParticles) {
+        goldParticles.rotation.y += 0.0012;
+        goldParticles.rotation.x += 0.0006;
+      }
+
+      if (goldTorus) {
+        goldTorus.rotation.x += 0.004;
+        goldTorus.rotation.y += 0.005;
+        goldTorus.position.x = 12 + targetX * 10;
+        goldTorus.position.y = 4 - targetY * 10;
+      }
+
+      if (floatingDodeca) {
+        floatingDodeca.rotation.x -= 0.003;
+        floatingDodeca.rotation.z += 0.004;
+        floatingDodeca.position.x = -14 + targetX * 8;
+        floatingDodeca.position.y = -4 - targetY * 8;
+      }
+
+      camera.position.x = targetX * 6;
+      camera.position.y = -targetY * 6;
+      camera.lookAt(scene.position);
+
+      renderer.render(scene, camera);
+    }
+
+    /* =========================================================================
+       2. INTERACTIVE 3D MOUSE-TILT CARD FOR "MY IMAGE"
+       ========================================================================= */
+    function initTiltCard() {
+      const card = document.getElementById('hero3dCard');
+      if (!card) return;
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -16;
+        const rotateY = ((x - centerX) / centerX) * 16;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      });
+    }
+
+    function initAvatarUpload() {
+      const input = document.getElementById('avatarUploadInput');
+      const img = document.getElementById('myProfileImage');
+      if (!input || !img) return;
+
+      input.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            img.src = event.target.result;
+            showNotification('Profile avatar updated in 3D frame!');
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+
+    /* =========================================================================
+       3. DARK / LIGHT THEME TOGGLE (DEFAULT = DARK)
+       ========================================================================= */
+    const rootDoc = document.documentElement;
+    const themeBtn = document.getElementById('themeToggleBtn');
+    const themeIcon = document.getElementById('themeIcon');
+
+    const savedTheme = localStorage.getItem('chen_3d_theme') || 'dark';
+    applyTheme(savedTheme);
+
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const isDark = rootDoc.classList.contains('dark');
+        applyTheme(isDark ? 'light' : 'dark');
+      });
+    }
+
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        rootDoc.classList.add('dark');
+        rootDoc.classList.remove('light');
+        localStorage.setItem('chen_3d_theme', 'dark');
+        if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
+      } else {
+        rootDoc.classList.remove('dark');
+        rootDoc.classList.add('light');
+        localStorage.setItem('chen_3d_theme', 'light');
+        if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
+      }
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+      });
+    }
+
+    /* =========================================================================
+       4. MASTER SHOWREEL (MUTED BY DEFAULT, AUDIO TOGGLE, CONTROLS)
+       ========================================================================= */
+    const masterVideo = document.getElementById('masterVideoElement');
+    const hudUnmuteBtn = document.getElementById('showreelHudUnmuteBtn');
+    const hudMuteIcon = document.getElementById('hudMuteIcon');
+    const hudMuteText = document.getElementById('hudMuteText');
+    const ribbonUnmute = document.getElementById('ribbonUnmuteAction');
+    const masterRibbonWrapper = document.getElementById('masterUnmuteRibbon');
+    const masterPlayBtn = document.getElementById('masterPlayBtn');
+    const masterPlayIcon = document.getElementById('masterPlayIcon');
+    const masterMuteBtn = document.getElementById('masterMuteBtn');
+    const masterBottomMuteIcon = document.getElementById('masterBottomMuteIcon');
+    const masterBottomMuteLabel = document.getElementById('masterBottomMuteLabel');
+    const masterSeekFill = document.getElementById('masterSeekFill');
+    const masterSeekTrack = document.getElementById('masterSeekTrack');
+    const masterTimeDisplay = document.getElementById('masterTimeDisplay');
+    const masterFullscreenBtn = document.getElementById('masterFullscreenBtn');
+    const masterVideoWrapper = document.getElementById('masterVideoWrapper');
+    const masterCenterFlash = document.getElementById('masterCenterFlash');
+    const masterFlashIcon = document.getElementById('masterFlashIcon');
+
+    if (masterVideo) {
+      masterVideo.muted = true; // Strict default
+
+      function setMasterMuteState(muted) {
+        masterVideo.muted = muted;
+        if (muted) {
+          hudMuteIcon.setAttribute('data-lucide', 'volume-x');
+          masterBottomMuteIcon.setAttribute('data-lucide', 'volume-x');
+          hudMuteText.textContent = 'Tap to Unmute';
+          masterBottomMuteLabel.textContent = 'Unmute';
+        } else {
+          hudMuteIcon.setAttribute('data-lucide', 'volume-2');
+          masterBottomMuteIcon.setAttribute('data-lucide', 'volume-2');
+          hudMuteText.textContent = 'Sound On';
+          masterBottomMuteLabel.textContent = 'Mute';
+          if (masterRibbonWrapper) {
+            masterRibbonWrapper.classList.add('opacity-0', 'pointer-events-none');
+          }
+        }
+        if (window.lucide) lucide.createIcons();
+      }
+
+      if (ribbonUnmute) {
+        ribbonUnmute.addEventListener('click', (e) => {
+          e.stopPropagation();
+          setMasterMuteState(false);
+        });
+      }
+
+      if (hudUnmuteBtn) {
+        hudUnmuteBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          setMasterMuteState(!masterVideo.muted);
+        });
+      }
+
+      if (masterMuteBtn) {
+        masterMuteBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          setMasterMuteState(!masterVideo.muted);
+        });
+      }
+
+      function toggleMasterPlayback() {
+        if (masterVideo.paused) {
+          masterVideo.play();
+          masterPlayIcon.setAttribute('data-lucide', 'pause');
+          flashMasterIcon('pause');
+        } else {
+          masterVideo.pause();
+          masterPlayIcon.setAttribute('data-lucide', 'play');
+          flashMasterIcon('play');
+        }
+        if (window.lucide) lucide.createIcons();
+      }
+
+      function flashMasterIcon(iconName) {
+        masterFlashIcon.setAttribute('data-lucide', iconName);
+        if (window.lucide) lucide.createIcons();
+        masterCenterFlash.classList.remove('opacity-0');
+        masterCenterFlash.classList.add('opacity-100');
+        setTimeout(() => {
+          masterCenterFlash.classList.remove('opacity-100');
+          masterCenterFlash.classList.add('opacity-0');
+        }, 500);
+      }
+
+      masterPlayBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMasterPlayback();
+      });
+
+      masterVideoWrapper.addEventListener('click', (e) => {
+        if (e.target.closest('button') || e.target.closest('#masterSeekTrack')) return;
+        toggleMasterPlayback();
+      });
+
+      masterVideo.addEventListener('timeupdate', () => {
+        if (!masterVideo.duration) return;
+        const progress = (masterVideo.currentTime / masterVideo.duration) * 100;
+        masterSeekFill.style.width = `${progress}%`;
+
+        const curMins = Math.floor(masterVideo.currentTime / 60);
+        const curSecs = Math.floor(masterVideo.currentTime % 60).toString().padStart(2, '0');
+        const durMins = Math.floor(masterVideo.duration / 60);
+        const durSecs = Math.floor(masterVideo.duration % 60).toString().padStart(2, '0');
+        masterTimeDisplay.textContent = `${curMins}:${curSecs} / ${durMins}:${durSecs}`;
+      });
+
+      masterSeekTrack.addEventListener('click', (e) => {
+        const rect = masterSeekTrack.getBoundingClientRect();
+        const pos = (e.clientX - rect.left) / rect.width;
+        masterVideo.currentTime = pos * masterVideo.duration;
+      });
+
+      masterFullscreenBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+          masterVideoWrapper.requestFullscreen().catch(() => {});
+        } else {
+          document.exitFullscreen();
+        }
+      });
+    }
+
+    /* =========================================================================
+       5. INSTAGRAM-STYLE 3D AUTOMATIC SLIDING REELS
+       ========================================================================= */
+    const carouselTrack = document.getElementById('reelsCarouselTrack');
+    const carouselPrevBtn = document.getElementById('carouselPrevBtn');
+    const carouselNextBtn = document.getElementById('carouselNextBtn');
+    const toggleAutoBtn = document.getElementById('toggleCarouselAutoBtn');
+    const autoStatusIcon = document.getElementById('autoStatusIcon');
+    const autoStatusLabel = document.getElementById('autoStatusLabel');
+    const reelCards = document.querySelectorAll('.reel-card');
+
+    let autoSlideTimer = null;
+    let isAutoSlideOn = true;
+    const slideInterval = 4000;
+
+    function runAutoSlide() {
+      if (autoSlideTimer) clearInterval(autoSlideTimer);
+      autoSlideTimer = setInterval(() => {
+        if (!isAutoSlideOn || !carouselTrack) return;
+        const cardStep = 320;
+        const maxScroll = carouselTrack.scrollWidth - carouselTrack.clientWidth;
+
+        if (carouselTrack.scrollLeft >= maxScroll - 20) {
+          carouselTrack.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          carouselTrack.scrollBy({ left: cardStep, behavior: 'smooth' });
+        }
+      }, slideInterval);
+    }
+
+    function pauseReelCarousel() {
+      isAutoSlideOn = false;
+      if (autoStatusIcon) autoStatusIcon.setAttribute('data-lucide', 'play-circle');
+      if (autoStatusLabel) autoStatusLabel.textContent = 'Auto-Slide Paused';
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function resumeReelCarousel() {
+      isAutoSlideOn = true;
+      if (autoStatusIcon) autoStatusIcon.setAttribute('data-lucide', 'pause-circle');
+      if (autoStatusLabel) autoStatusLabel.textContent = 'Auto-Slide Active';
+      if (window.lucide) lucide.createIcons();
+    }
+
+    if (toggleAutoBtn) {
+      toggleAutoBtn.addEventListener('click', () => {
+        if (isAutoSlideOn) pauseReelCarousel();
+        else resumeReelCarousel();
+      });
+    }
+
+    if (carouselTrack) {
+      carouselTrack.addEventListener('mouseenter', pauseReelCarousel);
+      carouselTrack.addEventListener('mouseleave', resumeReelCarousel);
+      carouselTrack.addEventListener('touchstart', pauseReelCarousel, { passive: true });
+    }
+
+    if (carouselPrevBtn) {
+      carouselPrevBtn.addEventListener('click', () => {
+        carouselTrack.scrollBy({ left: -320, behavior: 'smooth' });
+      });
+    }
+
+    if (carouselNextBtn) {
+      carouselNextBtn.addEventListener('click', () => {
+        carouselTrack.scrollBy({ left: 320, behavior: 'smooth' });
+      });
+    }
+
+    runAutoSlide();
+
+    // Reels individual videos: Strictly muted by default, tap to unmute
+    reelCards.forEach(card => {
+      const vid = card.querySelector('.reel-video');
+      const soundBtn = card.querySelector('.reel-audio-btn');
+      const soundIcon = card.querySelector('.reel-audio-icon');
+      const progressFill = card.querySelector('.reel-progress-fill');
+      const feedback = card.querySelector('.reel-audio-feedback');
+
+      if (!vid) return;
+
+      vid.muted = true;
+      vid.play().catch(() => {});
+
+      vid.addEventListener('timeupdate', () => {
+        if (!vid.duration) return;
+        const pct = (vid.currentTime / vid.duration) * 100;
+        if (progressFill) progressFill.style.width = `${pct}%`;
+      });
+
+      function toggleSound(e) {
+        if (e) e.stopPropagation();
+        vid.muted = !vid.muted;
+
+        if (soundIcon) {
+          soundIcon.setAttribute('data-lucide', vid.muted ? 'volume-x' : 'volume-2');
+          if (window.lucide) lucide.createIcons();
+        }
+
+        if (feedback) {
+          feedback.querySelector('i').setAttribute('data-lucide', vid.muted ? 'volume-x' : 'volume-2');
+          if (window.lucide) lucide.createIcons();
+          feedback.classList.remove('opacity-0');
+          feedback.classList.add('opacity-100');
+          setTimeout(() => {
+            feedback.classList.remove('opacity-100');
+            feedback.classList.add('opacity-0');
+          }, 600);
+        }
+      }
+
+      if (soundBtn) soundBtn.addEventListener('click', toggleSound);
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('button')) return;
+        toggleSound();
+      });
+    });
+
+    function toggleReelLike(btn) {
+      const heart = btn.querySelector('.reel-heart-icon');
+      const liked = btn.classList.toggle('text-rose-500');
+      if (liked) {
+        heart.setAttribute('fill', '#f43f5e');
+      } else {
+        heart.removeAttribute('fill');
+      }
+    }
+
+    function shareReel(title) {
+      const temp = document.createElement('input');
+      temp.value = window.location.href;
+      document.body.appendChild(temp);
+      temp.select();
+      try {
+        document.execCommand('copy');
+        showNotification(`Link copied to clipboard: ${title}`);
+      } catch (err) {
+        showNotification('Share link ready!');
+      }
+      document.body.removeChild(temp);
+    }
+
+    /* =========================================================================
+       6. WORKS FILTERING
+       ========================================================================= */
+    const filterBtns = document.querySelectorAll('.works-filter-btn');
+    const workItems = document.querySelectorAll('.work-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.className = 'works-filter-btn px-5 py-2 rounded-full text-xs font-mono font-semibold tracking-wider transition-all glass-panel-3d text-slate-300 hover:text-gold-champagne hover:border-gold-metallic';
+        });
+
+        btn.className = 'works-filter-btn active-gold-filter px-5 py-2 rounded-full text-xs font-mono font-semibold tracking-wider transition-all gold-gradient-bg text-obsidian-950 shadow-gold-glow';
+
+        const cat = btn.getAttribute('data-filter');
+        workItems.forEach(card => {
+          const itemCat = card.getAttribute('data-category');
+          if (cat === 'all' || itemCat === cat) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    /* =========================================================================
+       7. VIDEO LIGHTBOX MODAL
+       ========================================================================= */
+    const workModal = document.getElementById('workVideoModal');
+    const modalVideoTag = document.getElementById('modalVideoTag');
+    const modalVideoTitle = document.getElementById('modalVideoTitle');
+    const modalVideoMeta = document.getElementById('modalVideoMeta');
+
+    function openWorkModal(title, src, meta) {
+      modalVideoTitle.textContent = title;
+      modalVideoMeta.innerHTML = meta;
+      modalVideoTag.src = src;
+      modalVideoTag.muted = false;
+
+      workModal.classList.remove('opacity-0', 'pointer-events-none');
+      workModal.classList.add('opacity-100', 'pointer-events-auto');
+      modalVideoTag.play().catch(() => {});
+    }
+
+    function closeWorkModal() {
+      modalVideoTag.pause();
+      modalVideoTag.src = '';
+      workModal.classList.remove('opacity-100', 'pointer-events-auto');
+      workModal.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    workModal.addEventListener('click', (e) => {
+      if (e.target === workModal) closeWorkModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (!workModal.classList.contains('opacity-0')) closeWorkModal();
+        if (!cvModal.classList.contains('opacity-0')) closeCvModal();
+      }
+    });
+
+    /* =========================================================================
+       8. DOWNLOAD CV MODAL & PRINT HANDLER
+       ========================================================================= */
+    const cvModal = document.getElementById('cvModal');
+
+    function openCvModal() {
+      cvModal.classList.remove('opacity-0', 'pointer-events-none');
+      cvModal.classList.add('opacity-100', 'pointer-events-auto');
+    }
+
+    function closeCvModal() {
+      cvModal.classList.remove('opacity-100', 'pointer-events-auto');
+      cvModal.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    cvModal.addEventListener('click', (e) => {
+      if (e.target === cvModal) closeCvModal();
+    });
+
+    /* =========================================================================
+       9. HIRE ME Editing FORM HANDLER (FORMSPREE AJAX + SUCCESS NOTIFICATION)
+       ========================================================================= */
+    async function handleHireMeSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById('hireMeForm');
+      const btn = document.getElementById('hireMeSubmitBtn');
+      const alertBox = document.getElementById('hireSuccessAlert');
+
+      btn.disabled = true;
+      btn.innerHTML = `<span>Transmitting Editing Request...</span>`;
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          // Show inline gold alert box
+          alertBox.classList.remove('hidden');
+          btn.innerHTML = `<span>Editing Transmitted ✓</span>`;
+          form.reset();
+
+          // Trigger Custom Floating Success Toast Notification
+          showSuccessNotification('Editing Brief Sent Successfully! I will reply within 24 hours.');
+
+          setTimeout(() => {
+            btn.disabled = false;
+            btn.innerHTML = `<i data-lucide="sparkles" class="w-4 h-4 fill-obsidian-950"></i><span>Submit Editing Request</span>`;
+            if (window.lucide) lucide.createIcons();
+          }, 5000);
+        } else {
+          const result = await response.json();
+          const errorMsg = result.errors ? result.errors.map(err => err.message).join(', ') : 'Submission failed. Please check your inputs.';
+          showNotification(errorMsg);
+          btn.disabled = false;
+          btn.innerHTML = `<i data-lucide="sparkles" class="w-4 h-4 fill-obsidian-950"></i><span>Submit Editing Request</span>`;
+          if (window.lucide) lucide.createIcons();
+        }
+      } catch (error) {
+        showNotification('Network error. Please try again or email directly.');
+        btn.disabled = false;
+        btn.innerHTML = `<i data-lucide="sparkles" class="w-4 h-4 fill-obsidian-950"></i><span>Submit Editing Request</span>`;
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
+    // Specialized Luxury Floating Toast for Successful Transmissions
+    function showSuccessNotification(msg) {
+      const old = document.getElementById('gold3dToast');
+      if (old) old.remove();
+
+      const toast = document.createElement('div');
+      toast.id = 'gold3dToast';
+      toast.className = 'fixed bottom-6 right-6 z-50 px-6 py-4 rounded-2xl glass-panel-3d text-gold-champagne text-xs font-mono border border-gold-metallic shadow-gold-glow-lg flex items-center gap-3 transition-all duration-500 transform translate-y-4';
+      
+      toast.innerHTML = `
+        <div class="w-7 h-7 rounded-full bg-gold-metallic/20 border border-gold-metallic flex items-center justify-center shrink-0">
+          <svg class="w-4 h-4 text-gold-champagne" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <div>
+          <span class="block font-cinzel font-bold text-sm text-gold-champagne tracking-wider">SENT SUCCESSFULLY</span>
+          <span class="text-slate-300 text-[11px] leading-tight mt-0.5 block">${msg}</span>
+        </div>
+      `;
+
+      document.body.appendChild(toast);
+
+      // Smooth slide up entrance
+      setTimeout(() => toast.classList.remove('translate-y-4'), 20);
+
+      // Auto fade & remove after 5 seconds
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(16px)';
+        setTimeout(() => toast.remove(), 500);
+      }, 5000);
+    }
+
+    function copyContactEmail(email) {
+      const input = document.createElement('input');
+      input.value = email;
+      document.body.appendChild(input);
+      input.select();
+      try {
+        document.execCommand('copy');
+        showNotification('Email copied to clipboard!');
+      } catch (err) {
+        showNotification(email);
+      }
+      document.body.removeChild(input);
+    }
+
+    function showNotification(msg) {
+      const old = document.getElementById('gold3dToast');
+      if (old) old.remove();
+
+      const toast = document.createElement('div');
+      toast.id = 'gold3dToast';
+      toast.className = 'fixed bottom-6 right-6 z-50 px-5 py-3 rounded-2xl glass-panel-3d text-gold-champagne text-xs font-mono border border-gold-metallic/60 shadow-gold-glow flex items-center gap-2 transition-all transform translate-y-2';
+      toast.innerHTML = `<span class="w-2 h-2 rounded-full bg-gold-metallic animate-ping"></span> ${msg}`;
+      document.body.appendChild(toast);
+
+      setTimeout(() => toast.classList.remove('translate-y-2'), 10);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 400);
+      }, 3500);
+    }
+    
+  </script>
+</body>
+</html>
